@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instituto Cervantes del Sur - Sevilla, España</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#2D4A2D;--forest-deep:#1B3A1B;--forest-mid:#264726;--forest-light:#3D6B3D;
+  --cream:#F5F0E8;--cream-dark:#E8DFD0;--cream-mid:#EDE7DB;--cream-light:#FAF8F4;
+  --gold:#B8963E;--gold-light:#D4B36A;--gold-dark:#96792F;--gold-glow:rgba(184,150,62,0.15);
+  --ink:#1A1A18;--ink-soft:#3D3D38;--ink-muted:#5A5A55;
+  --stone:#8A8475;--stone-light:#A8A295;
+  --shadow-sm:0 2px 8px rgba(27,58,27,0.06);--shadow-md:0 6px 24px rgba(27,58,27,0.08);--shadow-lg:0 12px 40px rgba(27,58,27,0.12);
+  --radius:3px;--transition:0.4s cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'EB Garamond','Cormorant Garamond','Georgia',serif;background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.78}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");pointer-events:none;z-index:99999}
+::selection{background:var(--gold-light);color:var(--forest-deep)}
+
+/* intro screen with my name */
+.splash{position:fixed;inset:0;z-index:100000;background:var(--forest-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s ease,visibility 0.8s ease}
+.splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.splash-line{width:60px;height:1px;background:var(--gold);margin-bottom:2rem;transform:scaleX(0);animation:splashLine 0.8s ease-out 0.2s forwards}
+@keyframes splashLine{to{transform:scaleX(1)}}
+.splash-made{font-family:'EB Garamond',serif;font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold-light);opacity:0;animation:splashFade 0.6s ease-out 0.5s forwards}
+.splash-name{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--cream);margin-top:0.5rem;opacity:0;animation:splashFade 0.7s ease-out 0.8s forwards;letter-spacing:0.02em}
+.splash-sub{font-family:'EB Garamond',serif;font-size:0.82rem;color:var(--stone-light);margin-top:0.8rem;letter-spacing:0.12em;opacity:0;animation:splashFade 0.6s ease-out 1.1s forwards}
+.splash-line-bottom{width:40px;height:1px;background:var(--gold);margin-top:2rem;opacity:0;animation:splashFade 0.5s ease-out 1.4s forwards}
+.splash-time{font-family:'EB Garamond',serif;font-size:0.7rem;color:var(--stone);margin-top:1.2rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0;animation:splashFade 0.5s ease-out 1.3s forwards}
+@keyframes splashFade{to{opacity:1}}
+
+/* navbar - fixed at top */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:10000;background:rgba(27,58,27,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(184,150,62,0.35);transition:var(--transition)}
+.site-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.18)}
+.nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px}
+.nav-brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none;cursor:pointer}
+.nav-brand-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--cream);letter-spacing:0.04em}
+.nav-brand-sub{display:block;font-size:0.6rem;font-weight:400;color:var(--gold-light);letter-spacing:0.15em;text-transform:uppercase;margin-top:-2px}
+.nav-links{display:flex;gap:0.1rem;list-style:none;align-items:center}
+.nav-links li a{color:rgba(245,240,232,0.75);text-decoration:none;font-family:'EB Garamond',serif;font-size:0.8rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.4rem 0.6rem;border-radius:var(--radius);transition:var(--transition);cursor:pointer;white-space:nowrap;position:relative}
+.nav-links li a:hover,.nav-links li a.active{color:var(--gold-light);background:rgba(184,150,62,0.1)}
+.nav-links li a.active::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold-light)}
+.nav-right{display:flex;align-items:center;gap:0.8rem}
+.lang-toggle{background:rgba(184,150,62,0.15);border:1px solid rgba(184,150,62,0.4);color:var(--gold-light);font-family:'EB Garamond',serif;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.32rem 0.75rem;border-radius:2px;cursor:pointer;transition:var(--transition)}
+.lang-toggle:hover{background:rgba(184,150,62,0.25);border-color:var(--gold)}
+.nav-mobile-toggle{display:none;background:none;border:none;color:var(--cream);font-size:1.4rem;cursor:pointer;padding:0.5rem}
+
+/* the page switching system */
+.page{display:none;min-height:100vh;padding-top:62px;animation:pageIn 0.5s ease-out}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* scroll fade-in animations - learned from web dev simplified on yt */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal-scale{opacity:0;transform:scale(0.95);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible,.reveal-scale.visible{opacity:1;transform:none}
+.stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.12s}.stagger-3{transition-delay:0.2s}.stagger-4{transition-delay:0.28s}.stagger-5{transition-delay:0.36s}
+
+/* reusable styles */
+.content-wrap{max-width:880px;margin:0 auto;padding:4.5rem 2.5rem}
+.content-wrap-wide{max-width:1220px;margin:0 auto;padding:4.5rem 2.5rem}
+.prose{font-size:1.18rem;line-height:2.05;color:var(--ink-soft);max-width:720px}
+.prose p{margin-bottom:1.35rem}
+.section-heading{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--forest-deep);margin-bottom:1.2rem;line-height:1.25}
+.section-sub{font-size:0.7rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.5rem}
+.gold-rule{width:50px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin-bottom:2rem}
+.soft-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--cream-dark),var(--gold-light),var(--cream-dark),transparent);max-width:420px;margin:2.5rem auto}
+
+/* ===== PAGE HERO WITH PARALLAX ===== */
+.page-hero{padding:6rem 2.5rem 5rem;text-align:center;background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(184,150,62,0.07) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(61,107,61,0.08) 0%,transparent 50%)}
+.page-hero .parallax-bg{position:absolute;inset:-20%;background:repeating-linear-gradient(45deg,rgba(184,150,62,0.015) 0px,rgba(184,150,62,0.015) 1px,transparent 1px,transparent 30px);pointer-events:none;transition:transform 0.1s linear}
+.page-hero-label{position:relative;font-size:0.7rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-light);font-weight:600;margin-bottom:0.7rem}
+.page-hero h1{position:relative;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.page-hero p{position:relative;font-size:1.15rem;color:var(--cream-dark);max-width:620px;margin:0 auto;line-height:1.9}
+
+/* ===== CARDS ===== */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin:2rem 0}
+.card{background:var(--cream-light);border:1px solid var(--cream-dark);padding:2rem;border-radius:var(--radius);transition:var(--transition);position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform 0.4s ease}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.card:hover::after{transform:scaleY(1)}
+.card-icon{font-size:1.6rem;margin-bottom:0.7rem}
+.card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--forest-deep);margin-bottom:0.6rem}
+.card p{font-size:1.05rem;line-height:1.85;color:var(--ink-soft)}
+
+/* ===== DARK BAND ===== */
+.dark-band{background:var(--forest-deep);color:var(--cream);padding:5rem 2.5rem;position:relative;overflow:hidden}
+.dark-band::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(184,150,62,0.02) 0px,rgba(184,150,62,0.02) 1px,transparent 1px,transparent 80px)}
+.dark-band .content-inner{max-width:880px;margin:0 auto}
+.dark-band .content-inner-wide{max-width:1220px;margin:0 auto}
+.dark-band .section-sub{color:var(--gold-light)}.dark-band .section-heading{color:var(--cream)}.dark-band .prose,.dark-band .prose p{color:var(--cream-dark)}
+.dark-band .card{background:rgba(255,255,255,0.04);border-color:rgba(184,150,62,0.2)}
+.dark-band .card:hover{background:rgba(255,255,255,0.07);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.dark-band .card h3{color:var(--cream)}.dark-band .card p{color:var(--cream-dark)}
+
+/* ===== FEATURE LIST ===== */
+.feat-list{list-style:none;columns:2;column-gap:3rem;margin:1.5rem 0}
+.feat-list li{font-size:1.08rem;line-height:1.9;color:var(--ink-soft);padding-left:1.4rem;position:relative;break-inside:avoid;margin-bottom:0.35rem}
+.feat-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:0.5rem;top:0.55rem}
+.dark-band .feat-list li{color:var(--cream-dark)}.dark-band .feat-list li::before{color:var(--gold-light)}
+
+/* ===== TABLE ===== */
+.elegant-table{width:100%;border-collapse:collapse;margin:2rem 0}
+.elegant-table th{background:var(--forest);color:var(--cream);font-family:'Playfair Display',serif;font-weight:600;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.9rem 1.1rem;text-align:left}
+.elegant-table td{padding:0.8rem 1.1rem;border-bottom:1px solid var(--cream-dark);color:var(--ink-soft);font-size:1.05rem}
+.elegant-table tr:hover td{background:rgba(45,74,45,0.03)}
+
+/* ===== PAGE NAV FOOTER ===== */
+.page-nav-footer{text-align:center;padding:3rem 2rem 4rem;border-top:1px solid var(--cream-dark);margin-top:1rem}
+.page-nav-footer .next-label{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--stone);margin-bottom:0.5rem}
+.page-nav-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.5rem;background:var(--forest);color:var(--cream);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;text-decoration:none;border:1px solid var(--forest);border-radius:var(--radius);cursor:pointer;transition:var(--transition)}
+.page-nav-btn:hover{background:var(--forest-deep);border-color:var(--gold);box-shadow:0 4px 20px rgba(45,74,45,0.25);transform:translateY(-2px)}
+.page-nav-btn .arrow{transition:transform 0.3s ease;font-size:1.1rem}
+.page-nav-btn:hover .arrow{transform:translateX(5px)}
+.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 2rem;background:transparent;color:var(--forest);font-family:'EB Garamond',serif;font-size:0.95rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:1.5px solid var(--forest);border-radius:var(--radius);cursor:pointer;transition:var(--transition);text-decoration:none;margin-top:0.5rem}
+.btn-outline:hover{background:var(--forest);color:var(--cream)}
+
+/* ===== HOME HERO ===== */
+.home-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;background:var(--cream);overflow:hidden}
+.home-hero .parallax-layer{position:absolute;inset:0;pointer-events:none}
+.home-hero .parallax-layer .deco-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid var(--cream-dark)}
+.home-hero .parallax-layer .deco-circle:nth-child(1){width:440px;height:440px;opacity:0.45}
+.home-hero .parallax-layer .deco-circle:nth-child(2){width:490px;height:490px;opacity:0.25}
+.home-hero .parallax-layer .deco-circle:nth-child(3){width:540px;height:540px;opacity:0.12}
+.home-hero .parallax-layer .deco-line{position:absolute;background:var(--cream-dark)}
+.deco-line-h1{width:200px;height:1px;top:25%;left:5%;opacity:0.3}
+.deco-line-h2{width:150px;height:1px;top:70%;right:8%;opacity:0.25}
+.deco-line-v1{width:1px;height:120px;top:15%;right:15%;opacity:0.2}
+.deco-line-v2{width:1px;height:80px;bottom:20%;left:12%;opacity:0.15}
+.hero-crest{position:relative;z-index:2;margin-bottom:2rem;animation:fadeDown 0.9s ease-out}
+.hero-type{position:relative;z-index:2;font-size:0.8rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.7rem;animation:fadeUp 0.7s ease-out 0.2s both}
+.home-hero h1{position:relative;z-index:2;font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:800;color:var(--forest-deep);line-height:1.05;margin-bottom:0.6rem;animation:fadeUp 0.7s ease-out 0.35s both}
+.home-hero h1 em{font-style:italic;font-weight:500;color:var(--forest-light)}
+.hero-loc{position:relative;z-index:2;font-size:1.08rem;color:var(--stone);letter-spacing:0.2em;margin-bottom:1.2rem;animation:fadeUp 0.7s ease-out 0.5s both}
+.hero-motto{position:relative;z-index:2;font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:var(--gold);margin-bottom:1.6rem;animation:fadeUp 0.7s ease-out 0.65s both}
+.hero-founded{position:relative;z-index:2;font-size:0.76rem;color:var(--stone);letter-spacing:0.25em;text-transform:uppercase;animation:fadeUp 0.7s ease-out 0.8s both}
+.hero-badge{position:relative;z-index:2;margin-top:1.2rem;font-size:0.68rem;color:var(--stone-light);letter-spacing:0.15em;text-transform:uppercase;animation:fadeUp 0.7s ease-out 0.95s both;opacity:0.6}
+.hero-scroll-cta{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;text-align:center;cursor:pointer;animation:fadeUp 0.7s ease-out 1.2s both}
+.hero-scroll-cta .scroll-text{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--stone);margin-bottom:0.3rem}
+.hero-scroll-cta .scroll-arrow{font-size:1.1rem;color:var(--forest-light);animation:bounceA 2s ease-in-out infinite}
+@keyframes bounceA{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== NAV HINT ===== */
+.nav-hint{background:linear-gradient(90deg,var(--cream-dark),var(--cream-mid),var(--cream-dark));text-align:center;padding:0.6rem 1rem;font-size:0.88rem;color:var(--forest);font-weight:600;letter-spacing:0.05em;border-bottom:1px solid rgba(184,150,62,0.2);cursor:pointer;transition:var(--transition)}
+.nav-hint:hover{background:var(--cream-mid)}
+.nav-hint .hint-arrow{display:inline-block;animation:hintP 1.8s ease-in-out infinite;margin-left:0.4rem}
+@keyframes hintP{0%,100%{transform:translateX(0);opacity:0.7}50%{transform:translateX(5px);opacity:1}}
+
+/* ===== ANIMATED STATS ===== */
+.stats-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2rem 0}
+.stat-item{text-align:center;min-width:100px}
+.stat-number{font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:var(--forest-deep);line-height:1}
+.stat-suffix{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600;color:var(--gold)}
+.stat-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);margin-top:0.3rem}
+.dark-band .stat-number{color:var(--cream)}
+.dark-band .stat-label{color:var(--cream-dark)}
+
+/* ===== MOSAIC SECTION (unique gallery treatment) ===== */
+.mosaic-section{background:var(--forest-deep);padding:5rem 2.5rem;position:relative;overflow:hidden}
+.mosaic-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(184,150,62,0.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 70%,rgba(61,107,61,0.08) 0%,transparent 60%)}
+.mosaic-grid{max-width:1100px;margin:2rem auto 0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:160px;gap:0.6rem}
+.mosaic-item{border-radius:2px;overflow:hidden;position:relative;background:rgba(45,74,45,0.5);transition:var(--transition)}
+.mosaic-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.mosaic-item:nth-child(5){grid-column:span 2}
+.mosaic-item:nth-child(8){grid-column:span 2}
+.mosaic-item .m-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:1.2rem;text-align:center;background:linear-gradient(135deg,rgba(27,58,27,0.8) 0%,rgba(45,74,45,0.6) 100%);transition:var(--transition)}
+.mosaic-item:hover .m-inner{background:linear-gradient(135deg,rgba(27,58,27,0.65) 0%,rgba(45,74,45,0.4) 100%)}
+.mosaic-item:hover{transform:scale(1.02)}
+.m-icon{font-size:1.8rem;margin-bottom:0.4rem}
+.m-cap{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--cream)}
+.m-sub{font-size:0.75rem;color:var(--gold-light);margin-top:0.15rem}
+
+/* ===== TESTIMONIAL STRIP (unique treatment) ===== */
+.testimonial-strip{background:var(--cream-light);border-top:1px solid var(--cream-dark);border-bottom:1px solid var(--cream-dark);padding:5rem 2.5rem;position:relative}
+.testimonial-strip::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.t-carousel{max-width:1220px;margin:2rem auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.t-card{background:var(--cream);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:2.2rem;position:relative;transition:var(--transition)}
+.t-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.t-card::before{content:'"';font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);line-height:1;position:absolute;top:1rem;left:1.5rem;opacity:0.3}
+.t-text{font-size:1.05rem;font-style:italic;line-height:1.9;color:var(--ink-soft);margin-bottom:1.2rem;padding-top:1rem}
+.t-author{font-family:'Playfair Display',serif;font-weight:700;color:var(--forest-deep);font-size:0.95rem}
+.t-role{font-size:0.8rem;color:var(--stone)}
+
+/* ===== FACULTY ===== */
+.faculty-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.faculty-card{background:var(--cream-light);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:1.8rem;transition:var(--transition)}
+.faculty-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.faculty-avatar{width:50px;height:50px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:0.9rem;border:2px solid var(--gold)}
+.faculty-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--forest-deep);margin-bottom:0.12rem}
+.faculty-title{font-size:0.85rem;color:var(--gold-dark);font-weight:600;margin-bottom:0.55rem}
+.faculty-cred{font-size:0.92rem;color:var(--ink-muted);line-height:1.75;font-style:italic}
+.faculty-dept{display:inline-block;margin-top:0.65rem;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--forest-light);font-weight:700;background:rgba(45,74,45,0.06);padding:0.22rem 0.55rem;border-radius:2px}
+
+/* ===== CAMPUS MAP ===== */
+.campus-visual{width:100%;aspect-ratio:16/9;background:var(--forest-deep);border-radius:var(--radius);position:relative;overflow:hidden;border:2px solid var(--gold);margin:2rem 0}
+.campus-visual .map-bg{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(184,150,62,0.035) 0px,rgba(184,150,62,0.035) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,rgba(184,150,62,0.035) 0px,rgba(184,150,62,0.035) 1px,transparent 1px,transparent 40px),var(--forest-deep)}
+.map-instruction{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:rgba(184,150,62,0.92);color:var(--forest-deep);font-size:0.76rem;font-weight:700;padding:0.35rem 1rem;border-radius:2px;z-index:10;letter-spacing:0.05em;animation:subtleP 2.5s ease-in-out infinite}
+@keyframes subtleP{0%,100%{opacity:0.85}50%{opacity:1}}
+.map-point{position:absolute;cursor:pointer;z-index:5;transition:var(--transition)}
+.map-dot{width:15px;height:15px;border-radius:50%;background:var(--gold);border:2px solid var(--cream);box-shadow:0 0 0 4px rgba(184,150,62,0.3);transition:var(--transition);animation:dotP 2.5s ease-in-out infinite}
+@keyframes dotP{0%,100%{box-shadow:0 0 0 4px rgba(184,150,62,0.3)}50%{box-shadow:0 0 0 8px rgba(184,150,62,0.12)}}
+.map-point:hover .map-dot{transform:scale(1.35);box-shadow:0 0 0 8px rgba(184,150,62,0.25);animation:none}
+.map-label{position:absolute;top:50%;left:calc(100% + 10px);transform:translateY(-50%);background:rgba(27,58,27,0.92);color:var(--cream);font-family:'EB Garamond',serif;font-size:0.8rem;font-weight:600;padding:0.28rem 0.6rem;border-radius:2px;white-space:nowrap;opacity:0;transition:var(--transition);pointer-events:none;border:1px solid var(--gold)}
+.map-point:hover .map-label{opacity:1}
+.campus-detail-panel{background:var(--cream-light);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:2rem;min-height:90px;transition:var(--transition)}
+.campus-detail-panel h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--forest-deep);margin-bottom:0.5rem}
+.campus-detail-panel p{font-size:1.05rem;line-height:1.9;color:var(--ink-soft)}
+
+/* ===== ADMISSIONS STEPS ===== */
+.admissions-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;margin:2rem 0}
+.step-card{text-align:center;padding:2rem 1.3rem;background:var(--cream-light);border:1px solid var(--cream-dark);border-radius:var(--radius);transition:var(--transition)}
+.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.step-num{width:42px;height:42px;border-radius:50%;background:var(--forest);color:var(--cream);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 0.9rem;border:2px solid var(--gold)}
+.step-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--forest-deep);margin-bottom:0.45rem}
+.step-card p{font-size:0.95rem;color:var(--ink-muted);line-height:1.75}
+
+/* timeline section on homepage */
+.timeline{position:relative;padding:2rem 0;max-width:750px;margin:0 auto}
+.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--gold),var(--gold),transparent);transform:translateX(-50%)}
+.tl-item{position:relative;width:50%;padding:0 2.5rem 3rem;margin-bottom:0}
+.tl-left{left:0;text-align:right;padding-right:3rem}
+.tl-right{left:50%;text-align:left;padding-left:3rem}
+.tl-dot{position:absolute;top:0.5rem;width:14px;height:14px;border-radius:50%;background:var(--gold);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--gold);z-index:2}
+.tl-left .tl-dot{right:-7px}
+.tl-right .tl-dot{left:-7px}
+.tl-year{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--forest-deep);line-height:1;margin-bottom:0.35rem}
+.tl-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--forest);margin-bottom:0.4rem}
+.tl-text{font-size:0.95rem;line-height:1.75;color:var(--ink-muted)}
+.tl-content{background:var(--cream-light);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:1.3rem 1.5rem;transition:var(--transition)}
+.tl-content:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+
+/* footer */
+.site-footer{background:var(--forest-deep);color:var(--cream-dark);border-top:2px solid var(--gold);padding:3rem 2.5rem 1.5rem}
+.footer-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:0.5rem}
+.footer-desc{font-size:0.92rem;line-height:1.7;color:var(--cream-dark);opacity:0.8}
+.footer-col h4{font-family:'Playfair Display',serif;font-size:0.82rem;font-weight:700;color:var(--gold-light);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.7rem}
+.footer-col a{display:block;color:var(--cream-dark);text-decoration:none;font-size:0.88rem;padding:0.18rem 0;opacity:0.65;transition:var(--transition);cursor:pointer}
+.footer-col a:hover{opacity:1;color:var(--gold-light)}
+.footer-bottom{max-width:1060px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(184,150,62,0.2);text-align:center;font-size:0.78rem;opacity:0.45}
+.footer-credit{margin-top:0.8rem;font-size:0.72rem;letter-spacing:0.08em;opacity:0.35;color:var(--cream-dark)}
+
+/* mobile screen fixes */
+@media(max-width:900px){
+  .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:rgba(27,58,27,0.98);padding:1rem;gap:0.3rem;border-bottom:1px solid var(--gold)}
+  .nav-mobile-toggle{display:block}.feat-list{columns:1}.footer-inner{grid-template-columns:1fr;gap:2rem}
+  .mosaic-grid{grid-template-columns:repeat(2,1fr)}.mosaic-item:nth-child(1){grid-column:span 2;grid-row:span 1}
+  .home-hero .parallax-layer .deco-circle:nth-child(1){width:260px;height:260px}.home-hero .parallax-layer .deco-circle:nth-child(2){width:300px;height:300px}.home-hero .parallax-layer .deco-circle:nth-child(3){width:340px;height:340px}
+  .stats-row{gap:2rem}.stat-number{font-size:2.2rem}
+  .deco-line-h1,.deco-line-h2,.deco-line-v1,.deco-line-v2{display:none}
+  .timeline-line{left:20px}
+  .tl-item{width:100%;left:0;text-align:left;padding-left:3.5rem;padding-right:1rem}
+  .tl-left,.tl-right{padding-left:3.5rem;padding-right:1rem;text-align:left}
+  .tl-left .tl-dot,.tl-right .tl-dot{left:13px;right:auto}
+}
+@media(max-width:600px){.mosaic-grid{grid-template-columns:1fr}.mosaic-item:nth-child(1){grid-column:span 1}.mosaic-item:nth-child(5),.mosaic-item:nth-child(8){grid-column:span 1}.faculty-grid,.card-grid{grid-template-columns:1fr}.t-carousel{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== SPLASH SCREEN ===== -->
+<div class="splash" id="splash">
+  <div class="splash-line"></div>
+  <div class="splash-made">Diseñado y desarrollado por</div>
+  <div class="splash-name">Nidel Carter</div>
+  <div class="splash-sub">HTML · CSS · JavaScript</div>
+  <div class="splash-time">Más de 40 horas de desarrollo</div>
+  <div class="splash-line-bottom"></div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="site-nav" id="siteNav">
+<div class="nav-inner">
+  <a class="nav-brand" onclick="showPage('home')">
+    <svg width="30" height="36" viewBox="0 0 32 38" fill="none"><path d="M16 1.5L30 8.5V24Q30 35 16 37Q2 35 2 24V8.5Z" fill="none" stroke="#B8963E" stroke-width="1.2"/><text x="16" y="20" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#F5F0E8">ICS</text></svg>
+    <div><span class="nav-brand-text">Instituto Cervantes del Sur</span><span class="nav-brand-sub">Sevilla · Est. 1847</span></div>
+  </a>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" data-page="home" class="active">Inicio</a></li>
+    <li><a onclick="showPage('academics')" data-page="academics">Académico</a></li>
+    <li><a onclick="showPage('faculty')" data-page="faculty">Profesorado</a></li>
+    <li><a onclick="showPage('campus')" data-page="campus">Campus</a></li>
+    <li><a onclick="showPage('life')" data-page="life">Vida Escolar</a></li>
+    <li><a onclick="showPage('gallery')" data-page="gallery">Galería</a></li>
+    <li><a onclick="showPage('testimonials')" data-page="testimonials">Testimonios</a></li>
+    <li><a onclick="showPage('admissions')" data-page="admissions">Admisiones</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+  </div>
+</div>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+<header class="home-hero">
+  <div class="parallax-layer" data-speed="0.03">
+    <div class="deco-circle"></div><div class="deco-circle"></div><div class="deco-circle"></div>
+    <div class="deco-line deco-line-h1"></div><div class="deco-line deco-line-h2"></div>
+    <div class="deco-line deco-line-v1"></div><div class="deco-line deco-line-v2"></div>
+  </div>
+  <div class="hero-crest">
+    <svg width="105" height="125" viewBox="0 0 120 140" fill="none">
+      <path d="M60 5L110 30V90Q110 130 60 138Q10 130 10 90V30Z" fill="none" stroke="#2D4A2D" stroke-width="2.5"/>
+      <path d="M60 12L104 34V88Q104 124 60 132Q16 124 16 88V34Z" fill="none" stroke="#B8963E" stroke-width="1"/>
+      <line x1="60" y1="34" x2="60" y2="120" stroke="#B8963E" stroke-width="0.6" opacity="0.35"/>
+      <line x1="20" y1="70" x2="100" y2="70" stroke="#B8963E" stroke-width="0.6" opacity="0.35"/>
+      <text x="60" y="56" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-weight="800" fill="#2D4A2D">ICS</text>
+      <text x="38" y="92" text-anchor="middle" font-family="serif" font-size="11" fill="#B8963E">☽</text>
+      <text x="60" y="88" text-anchor="middle" font-family="serif" font-size="10" fill="#2D4A2D">⚜</text>
+      <text x="82" y="92" text-anchor="middle" font-family="serif" font-size="11" fill="#B8963E">✦</text>
+      <text x="60" y="115" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="6.5" fill="#2D4A2D" letter-spacing="1.5">SEVILLA</text>
+    </svg>
+  </div>
+  <p class="hero-type" data-es="Colegio Secundario Privado de Prestigio" data-en="Prestigious Private Secondary College">Colegio Secundario Privado de Prestigio</p>
+  <h1>Instituto Cervantes<br><em>del Sur</em></h1>
+  <p class="hero-loc">Sevilla · Andalucía · España</p>
+  <p class="hero-motto">"Sabiduría, Tradición, Excelencia"</p>
+  <p class="hero-founded" data-es="Fundado en el año 1847" data-en="Founded in 1847">Fundado en el año 1847</p>
+  <p class="hero-badge" data-es="Folleto Digital Interactivo" data-en="Interactive Digital Brochure">Folleto Digital Interactivo</p>
+  <div class="hero-scroll-cta" onclick="document.getElementById('homeIntro').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-text" data-es="Desplazar hacia abajo" data-en="Scroll down">Desplazar hacia abajo</div>
+    <div class="scroll-arrow">▼</div>
+  </div>
+</header>
+
+<div class="nav-hint" onclick="showPage('academics')" data-es="✦&ensp;Este folleto tiene ocho secciones. Pulse los enlaces de arriba para explorar cada página&ensp;" data-en="✦&ensp;This brochure has eight sections. Click the links above to explore each page&ensp;">✦&ensp;Este folleto tiene ocho secciones. Pulse los enlaces de arriba para explorar cada página&ensp;<span class="hint-arrow">→</span></div>
+
+<div class="content-wrap reveal" id="homeIntro">
+  <p class="section-sub" data-es="Bienvenidos" data-en="Welcome">Bienvenidos</p>
+  <h2 class="section-heading" data-es="Un legado que perdura desde hace más de ciento setenta años" data-en="A legacy enduring for more than one hundred and seventy years">Un legado que perdura desde hace más de ciento setenta años</h2>
+  <div class="gold-rule"></div>
+  <div class="prose">
+    <p data-es="El Instituto Cervantes del Sur es una de las instituciones educativas más distinguidas del sur de España. Está situado en el corazón histórico de Sevilla, entre calles empedradas y plazas centenarias. A lo largo de su historia, el colegio ha formado a muchos jóvenes que hoy son médicos, abogados, científicos e ingenieros muy importantes en toda España." data-en="The Instituto Cervantes del Sur is one of the most distinguished educational institutions in southern Spain. It is situated in the historic heart of Seville, among cobblestone streets and centuries-old plazas. Throughout its history, the school has educated many young people who today are very important doctors, lawyers, scientists, and engineers across Spain.">El Instituto Cervantes del Sur es una de las instituciones educativas más distinguidas del sur de España. Está situado en el corazón histórico de Sevilla, entre calles empedradas y plazas centenarias. A lo largo de su historia, el colegio ha formado a muchos jóvenes que hoy son médicos, abogados, científicos e ingenieros muy importantes en toda España.</p>
+    <p data-es="El instituto fue fundado en 1847 por el profesor Don Rafael Montoya Gutiérrez. Don Rafael era un hombre con una visión muy clara: él creía firmemente en el poder de una buena educación. Quería crear un colegio que no solo enseñara ciencias y matemáticas, sino que también formara ciudadanos responsables. Y eso es exactamente lo que hizo." data-en="The institute was founded in 1847 by professor Don Rafael Montoya Gutiérrez. Don Rafael was a man with a very clear vision: he firmly believed in the power of a good education. He wanted to create a school that didn't just teach science and maths, but also shaped responsible citizens. And that is exactly what he did.">El instituto fue fundado en 1847 por el profesor Don Rafael Montoya Gutiérrez. Don Rafael era un hombre con una visión muy clara: él creía firmemente en el poder de una buena educación. Quería crear un colegio que no solo enseñara ciencias y matemáticas, sino que también formara ciudadanos responsables. Y eso es exactamente lo que hizo.</p>
+    <p data-es="Hoy en día, el colegio acoge a quinientos veinte alumnos procedentes de toda Andalucía y de otras regiones de España. El equipo de profesores está compuesto por dieciocho educadores con títulos de doctorado y mucha experiencia profesional. Ahora mismo, el instituto está construyendo un nuevo centro de ciencias que está transformando el campus. ¡Es un momento muy emocionante para nuestro colegio!" data-en="Today, the school welcomes five hundred and twenty students from across Andalusia and other regions of Spain. The teaching team is composed of eighteen educators with doctoral degrees and extensive professional experience. Right now, the institute is building a new science centre that is transforming the campus. It is a very exciting time for our school!">Hoy en día, el colegio acoge a quinientos veinte alumnos procedentes de toda Andalucía y de otras regiones de España. El equipo de profesores está compuesto por dieciocho educadores con títulos de doctorado y mucha experiencia profesional. Ahora mismo, el instituto está construyendo un nuevo centro de ciencias que está transformando el campus. ¡Es un momento muy emocionante para nuestro colegio!</p>
+  </div>
+</div>
+
+<hr class="soft-divider">
+
+<!-- ANIMATED STATS -->
+<div class="content-wrap reveal" style="text-align:center">
+  <div class="stats-row">
+    <div class="stat-item"><div><span class="stat-number counter" data-target="1847">0</span></div><div class="stat-label" data-es="Año de fundación" data-en="Year founded">Año de fundación</div></div>
+    <div class="stat-item"><div><span class="stat-number counter" data-target="520">0</span></div><div class="stat-label" data-es="Alumnos matriculados" data-en="Enrolled students">Alumnos matriculados</div></div>
+    <div class="stat-item"><div><span class="stat-number counter" data-target="18">0</span></div><div class="stat-label" data-es="Profesores expertos" data-en="Expert professors">Profesores expertos</div></div>
+    <div class="stat-item"><div><span class="stat-number counter" data-target="14">0</span></div><div class="stat-label" data-es="Asignaturas ofrecidas" data-en="Subjects offered">Asignaturas ofrecidas</div></div>
+    <div class="stat-item"><div><span class="stat-number counter" data-target="98">0</span><span class="stat-suffix">%</span></div><div class="stat-label" data-es="Tasa de aprobados" data-en="Pass rate">Tasa de aprobados</div></div>
+  </div>
+</div>
+
+<hr class="soft-divider">
+
+<!-- ANIMATED HISTORY TIMELINE -->
+<div class="content-wrap">
+  <p class="section-sub reveal" data-es="Nuestra Historia" data-en="Our History">Nuestra Historia</p>
+  <h2 class="section-heading reveal" data-es="Momentos que definieron nuestro legado" data-en="Moments that defined our legacy">Momentos que definieron nuestro legado</h2>
+  <div class="gold-rule reveal"></div>
+
+  <div class="timeline">
+    <div class="timeline-line"></div>
+
+    <div class="tl-item tl-left reveal-left">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1847</div>
+        <div class="tl-title" data-es="Fundación del Instituto" data-en="Founding of the Institute">Fundación del Instituto</div>
+        <div class="tl-text" data-es="El profesor Don Rafael Montoya Gutiérrez fundó el Instituto Cervantes del Sur con solo doce alumnos y tres profesores en un pequeño edificio cerca de la Catedral de Sevilla." data-en="Professor Don Rafael Montoya Gutiérrez founded the Instituto Cervantes del Sur with just twelve students and three teachers in a small building near Seville Cathedral.">El profesor Don Rafael Montoya Gutiérrez fundó el Instituto Cervantes del Sur con solo doce alumnos y tres profesores en un pequeño edificio cerca de la Catedral de Sevilla.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-right reveal-right">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1890</div>
+        <div class="tl-title" data-es="Construcción de la Gran Biblioteca" data-en="Construction of the Grand Library">Construcción de la Gran Biblioteca</div>
+        <div class="tl-text" data-es="El instituto construyó su famosa biblioteca de dos plantas con techos de madera tallada. En aquel momento, era la biblioteca escolar más grande de toda Andalucía." data-en="The institute built its famous two-storey library with carved wooden ceilings. At the time, it was the largest school library in all of Andalusia.">El instituto construyó su famosa biblioteca de dos plantas con techos de madera tallada. En aquel momento, era la biblioteca escolar más grande de toda Andalucía.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-left reveal-left">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1923</div>
+        <div class="tl-title" data-es="Primer intercambio internacional" data-en="First international exchange">Primer intercambio internacional</div>
+        <div class="tl-text" data-es="El instituto organizó su primer intercambio estudiantil con un liceo en Toulouse, Francia. Este programa sigue activo hoy en día y es uno de los más antiguos de España." data-en="The institute organised its first student exchange with a lycée in Toulouse, France. This programme is still active today and is one of the oldest in Spain.">El instituto organizó su primer intercambio estudiantil con un liceo en Toulouse, Francia. Este programa sigue activo hoy en día y es uno de los más antiguos de España.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-right reveal-right">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1965</div>
+        <div class="tl-title" data-es="Apertura del complejo deportivo" data-en="Opening of the sports complex">Apertura del complejo deportivo</div>
+        <div class="tl-text" data-es="El colegio inauguró su complejo deportivo con un campo de fútbol, canchas de baloncesto y la primera piscina climatizada de un colegio en Sevilla." data-en="The school inaugurated its sports complex with a football pitch, basketball courts, and the first heated swimming pool at a school in Seville.">El colegio inauguró su complejo deportivo con un campo de fútbol, canchas de baloncesto y la primera piscina climatizada de un colegio en Sevilla.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-left reveal-left">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1998</div>
+        <div class="tl-title" data-es="Revolución tecnológica" data-en="Technology revolution">Revolución tecnológica</div>
+        <div class="tl-text" data-es="El instituto instaló ordenadores en todas las aulas e inauguró la primera sala de informática. Fue uno de los primeros colegios de Sevilla en conectarse a internet." data-en="The institute installed computers in all classrooms and opened its first computer room. It was one of the first schools in Seville to connect to the internet.">El instituto instaló ordenadores en todas las aulas e inauguró la primera sala de informática. Fue uno de los primeros colegios de Sevilla en conectarse a internet.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-right reveal-right">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">2014</div>
+        <div class="tl-title" data-es="La Dra. Judith Mohamed es nombrada Directora" data-en="Dr. Judith Mohamed appointed Director">La Dra. Judith Mohamed es nombrada Directora</div>
+        <div class="tl-text" data-es="Después de años de dedicación como profesora y subdirectora, la Dra. Mohamed fue nombrada directora del instituto. Bajo su liderazgo, el colegio está viviendo una época de renovación y crecimiento." data-en="After years of dedication as a teacher and deputy director, Dr. Mohamed was appointed director of the institute. Under her leadership, the school is experiencing a period of renewal and growth.">Después de años de dedicación como profesora y subdirectora, la Dra. Mohamed fue nombrada directora del instituto. Bajo su liderazgo, el colegio está viviendo una época de renovación y crecimiento.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-left reveal-left">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">2022</div>
+        <div class="tl-title" data-es="Renovación de los laboratorios" data-en="Laboratory renovation">Renovación de los laboratorios</div>
+        <div class="tl-text" data-es="Los tres laboratorios de ciencias fueron completamente renovados con una inversión de más de trescientos mil euros. Los estudiantes ahora tienen acceso a equipos de nivel universitario." data-en="The three science laboratories were completely renovated with an investment of more than three hundred thousand euros. Students now have access to university-level equipment.">Los tres laboratorios de ciencias fueron completamente renovados con una inversión de más de trescientos mil euros. Los estudiantes ahora tienen acceso a equipos de nivel universitario.</div>
+      </div>
+    </div>
+
+    <div class="tl-item tl-right reveal-right">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">2025</div>
+        <div class="tl-title" data-es="Hoy: 520 alumnos y creciendo" data-en="Today: 520 students and growing">Hoy: 520 alumnos y creciendo</div>
+        <div class="tl-text" data-es="El Instituto Cervantes del Sur celebra más de ciento setenta años de historia con quinientos veinte alumnos, dieciocho profesores y una reputación como uno de los mejores colegios del sur de España." data-en="The Instituto Cervantes del Sur celebrates more than one hundred and seventy years of history with five hundred and twenty students, eighteen professors, and a reputation as one of the finest schools in southern Spain.">El Instituto Cervantes del Sur celebra más de ciento setenta años de historia con quinientos veinte alumnos, dieciocho profesores y una reputación como uno de los mejores colegios del sur de España.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-nav-footer">
+  <div class="next-label" data-es="Página siguiente" data-en="Next page">Página siguiente</div>
+  <a class="page-nav-btn" onclick="showPage('academics')" data-es="Plan de Estudios y Horario" data-en="Curriculum & Timetable">Plan de Estudios y Horario <span class="arrow">→</span></a>
+</div>
+</div>
+
+<!-- ==================== ACADEMICS ==================== -->
+<div class="page" id="page-academics">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Plan de Estudios" data-en="Curriculum">Plan de Estudios</p><h1 data-es="Excelencia Académica" data-en="Academic Excellence">Excelencia Académica</h1><p data-es="Un currículo riguroso y equilibrado que prepara a nuestros alumnos para el mundo universitario y profesional." data-en="A rigorous and balanced curriculum that prepares our students for the university and professional world.">Un currículo riguroso y equilibrado que prepara a nuestros alumnos para el mundo universitario y profesional.</p></div>
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="Asignaturas" data-en="Subjects">Asignaturas</p>
+  <h2 class="section-heading" data-es="Las asignaturas que ofrecemos" data-en="The subjects we offer">Las asignaturas que ofrecemos</h2>
+  <div class="gold-rule"></div>
+  <div class="prose">
+    <p data-es="Nuestro plan de estudios ofrece un equilibrio excelente entre las ciencias, las humanidades, las lenguas extranjeras y las artes. Cada alumno cursa un mínimo de diez asignaturas durante los primeros cuatro años. Después, eligen su especialización para el bachillerato. Es una decisión muy importante." data-en="Our curriculum offers an excellent balance between the sciences, humanities, foreign languages, and the arts. Each student takes a minimum of ten subjects during the first four years. Afterwards, they choose their specialisation for the baccalaureate. It is a very important decision.">Nuestro plan de estudios ofrece un equilibrio excelente entre las ciencias, las humanidades, las lenguas extranjeras y las artes. Cada alumno cursa un mínimo de diez asignaturas durante los primeros cuatro años. Después, eligen su especialización para el bachillerato. Es una decisión muy importante.</p>
+    <p data-es="Todas las asignaturas son impartidas por profesores especializados con titulaciones superiores en sus materias. Y algo muy interesante: el instituto está incorporando métodos de enseñanza nuevos que combinan las clases normales con el aprendizaje basado en proyectos." data-en="All subjects are taught by specialised professors with advanced qualifications in their respective subjects. And something very interesting: the institute is incorporating new teaching methods that combine normal classes with project-based learning.">Todas las asignaturas son impartidas por profesores especializados con titulaciones superiores en sus materias. Y algo muy interesante: el instituto está incorporando métodos de enseñanza nuevos que combinan las clases normales con el aprendizaje basado en proyectos.</p>
+  </div>
+  <ul class="feat-list">
+    <li>Matemáticas y Matemáticas Avanzadas</li><li>Lengua Castellana y Literatura</li><li>Física</li><li>Química</li><li>Biología</li><li>Geografía e Historia</li><li>Inglés como Lengua Extranjera</li><li>Francés</li><li>Educación Física</li><li>Tecnología y Programación</li><li>Filosofía y Ética</li><li>Música</li><li>Arte y Diseño</li><li>Economía</li>
+  </ul>
+</div>
+
+<hr class="soft-divider">
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="Horario Escolar" data-en="School Timetable">Horario Escolar</p>
+  <h2 class="section-heading" data-es="Un día típico en el instituto" data-en="A typical day at the institute">Un día típico en el instituto</h2>
+  <div class="gold-rule"></div>
+  <div class="prose"><p data-es="La jornada escolar comienza a las ocho de la mañana y termina a las tres de la tarde. Cada clase tiene una duración de cincuenta minutos. Los estudiantes tienen dos periodos de descanso: un recreo breve a media mañana y una pausa más larga para el almuerzo al mediodía." data-en="The school day begins at eight in the morning and ends at three in the afternoon. Each class lasts fifty minutes. Students have two break periods: a short morning break and a longer lunch pause at midday.">La jornada escolar comienza a las ocho de la mañana y termina a las tres de la tarde. Cada clase tiene una duración de cincuenta minutos. Los estudiantes tienen dos periodos de descanso: un recreo breve a media mañana y una pausa más larga para el almuerzo al mediodía.</p></div>
+  <table class="elegant-table">
+    <thead><tr><th>Hora</th><th data-es="Lunes (ejemplo)" data-en="Monday (example)">Lunes (ejemplo)</th><th data-es="Miércoles (ejemplo)" data-en="Wednesday (example)">Miércoles (ejemplo)</th></tr></thead>
+    <tbody>
+      <tr><td>08:00 – 08:50</td><td>Matemáticas</td><td>Biología</td></tr>
+      <tr><td>08:55 – 09:45</td><td>Lengua Castellana</td><td>Inglés</td></tr>
+      <tr><td>09:50 – 10:40</td><td>Física</td><td>Geografía e Historia</td></tr>
+      <tr><td>10:40 – 11:10</td><td colspan="2"><em data-es="Recreo: patio central con naranjos" data-en="Break: central courtyard with orange trees">Recreo: patio central con naranjos</em></td></tr>
+      <tr><td>11:10 – 12:00</td><td>Inglés</td><td>Matemáticas Avanzadas</td></tr>
+      <tr><td>12:05 – 12:55</td><td>Geografía e Historia</td><td>Filosofía y Ética</td></tr>
+      <tr><td>12:55 – 13:40</td><td colspan="2"><em data-es="Almuerzo: comedor del instituto" data-en="Lunch: school dining hall">Almuerzo: comedor del instituto</em></td></tr>
+      <tr><td>13:40 – 14:30</td><td>Música</td><td>Arte y Diseño</td></tr>
+      <tr><td>14:35 – 15:00</td><td data-es="Tutoría" data-en="Tutorial">Tutoría</td><td data-es="Actividades Extraescolares" data-en="Extracurricular Activities">Actividades Extraescolares</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="page-nav-footer"><div class="next-label" data-es="Página siguiente" data-en="Next page">Página siguiente</div><a class="page-nav-btn" onclick="showPage('faculty')" data-es="Nuestro Profesorado" data-en="Our Faculty">Nuestro Profesorado <span class="arrow">→</span></a></div>
+</div>
+
+<!-- ==================== FACULTY ==================== -->
+<div class="page" id="page-faculty">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Nuestros Profesores" data-en="Our Teachers">Nuestros Profesores</p><h1 data-es="Un Equipo de Excelencia" data-en="A Team of Excellence">Un Equipo de Excelencia</h1><p data-es="Conoce a los profesores que hacen del Instituto Cervantes del Sur un lugar especial. Todos tienen mucha experiencia y una pasión real por enseñar." data-en="Meet the teachers who make the Instituto Cervantes del Sur a special place. They all have extensive experience and a real passion for teaching.">Conoce a los profesores que hacen del Instituto Cervantes del Sur un lugar especial. Todos tienen mucha experiencia y una pasión real por enseñar.</p></div>
+
+<div class="content-wrap reveal"><div class="prose"><p data-es="El equipo de profesores del Instituto Cervantes del Sur está formado por dieciocho profesores seleccionados con mucho cuidado. Cada uno tiene una formación académica avanzada y experiencia profesional real. No son solo profesores. Son mentores que están inspirando a los alumnos todos los días a ser mejores." data-en="The teaching team of the Instituto Cervantes del Sur is made up of eighteen professors selected with great care. Each one has advanced academic training and real professional experience. They are not just teachers. They are mentors who are inspiring students every day to be better.">El equipo de profesores del Instituto Cervantes del Sur está formado por dieciocho profesores seleccionados con mucho cuidado. Cada uno tiene una formación académica avanzada y experiencia profesional real. No son solo profesores. Son mentores que están inspirando a los alumnos todos los días a ser mejores.</p></div></div>
+
+<div class="content-wrap-wide">
+<div class="faculty-grid">
+  <div class="faculty-card reveal stagger-1"><div class="faculty-avatar">JM</div><div class="faculty-name">Dra. Judith Mohamed</div><div class="faculty-title">Directora del Instituto</div><div class="faculty-cred" data-es="La Dra. Mohamed es una de las figuras más admiradas de la comunidad educativa sevillana. Hija de una familia humilde, obtuvo una beca completa para estudiar en la Universidad de Sevilla, donde completó su doctorado en Ciencias de la Educación con las máximas calificaciones. A lo largo de su carrera, trabajó muy duro para ascender desde profesora de aula hasta directora del instituto, un puesto que ocupa con distinción desde hace doce años. Es un ejemplo vivo de que el esfuerzo, la disciplina y la perseverancia son el camino hacia la excelencia." data-en="Dr. Mohamed is one of the most admired figures in Seville's educational community. From a humble background, she earned a full scholarship to study at the University of Seville, where she completed her doctorate in Educational Sciences with the highest honours. Throughout her career, she worked very hard to rise from classroom teacher to director of the institute, a position she has held with distinction for twelve years. She is a living example that effort, discipline, and perseverance are the path to excellence.">La Dra. Mohamed es una de las figuras más admiradas de la comunidad educativa sevillana. Hija de una familia humilde, obtuvo una beca completa para estudiar en la Universidad de Sevilla, donde completó su doctorado en Ciencias de la Educación con las máximas calificaciones. A lo largo de su carrera, trabajó muy duro para ascender desde profesora de aula hasta directora del instituto, un puesto que ocupa con distinción desde hace doce años. Es un ejemplo vivo de que el esfuerzo, la disciplina y la perseverancia son el camino hacia la excelencia.</div><span class="faculty-dept">Dirección</span></div>
+  <div class="faculty-card reveal stagger-2"><div class="faculty-avatar">CR</div><div class="faculty-name">Dra. Beatriz Castillo Romero</div><div class="faculty-title">Subdirectora Académica</div><div class="faculty-cred" data-es="Tiene un doctorado en Filología Hispánica de la Universidad Complutense de Madrid. Es la persona que coordina el programa de bachillerato y sabe mucho sobre desarrollo curricular." data-en="She holds a doctorate in Hispanic Philology from the Complutense University of Madrid. She is the person who coordinates the baccalaureate programme and knows a great deal about curriculum development.">Tiene un doctorado en Filología Hispánica de la Universidad Complutense de Madrid. Es la persona que coordina el programa de bachillerato y sabe mucho sobre desarrollo curricular.</div><span class="faculty-dept">Dirección</span></div>
+  <div class="faculty-card reveal stagger-3"><div class="faculty-avatar">FN</div><div class="faculty-name">Prof. Fernando Navarro López</div><div class="faculty-title">Jefe del Departamento de Matemáticas</div><div class="faculty-cred" data-es="Se licenció en Matemáticas Puras en la Universidad de Granada. Tiene quince años como profesor titular y ganó el Premio Nacional de Enseñanza Matemática en 2019." data-en="Graduated in Pure Mathematics from the University of Granada. Has fifteen years as a full professor and won the National Mathematics Teaching Award in 2019.">Se licenció en Matemáticas Puras en la Universidad de Granada. Tiene quince años como profesor titular y ganó el Premio Nacional de Enseñanza Matemática en 2019.</div><span class="faculty-dept">Matemáticas</span></div>
+  <div class="faculty-card reveal stagger-4"><div class="faculty-avatar">MG</div><div class="faculty-name">Dra. Carmen Morales García</div><div class="faculty-title">Profesora de Física</div><div class="faculty-cred" data-es="La Dra. Morales estudió Física Teórica en la Universidad de Salamanca, donde obtuvo su doctorado. Trabaja también como investigadora asociada del Centro Nacional de Física de Partículas. Ha publicado varios artículos en revistas científicas internacionales." data-en="Dr. Morales studied Theoretical Physics at the University of Salamanca, where she obtained her doctorate. She also works as an associate researcher at the National Centre for Particle Physics. She has published several articles in international scientific journals.">La Dra. Morales estudió Física Teórica en la Universidad de Salamanca, donde obtuvo su doctorado. Trabaja también como investigadora asociada del Centro Nacional de Física de Partículas. Ha publicado varios artículos en revistas científicas internacionales.</div><span class="faculty-dept">Ciencias</span></div>
+  <div class="faculty-card reveal stagger-5"><div class="faculty-avatar">RS</div><div class="faculty-name">Prof. Diego Ruiz Santana</div><div class="faculty-title">Profesor de Química</div><div class="faculty-cred" data-es="Completó un máster en Química Orgánica en la Universidad de Valencia. Antes de dedicarse a la docencia, trabajó diez años en la industria farmacéutica." data-en="Completed a Master's in Organic Chemistry at the University of Valencia. Before turning to teaching, he worked ten years in the pharmaceutical industry.">Completó un máster en Química Orgánica en la Universidad de Valencia. Antes de dedicarse a la docencia, trabajó diez años en la industria farmacéutica.</div><span class="faculty-dept">Ciencias</span></div>
+  <div class="faculty-card reveal stagger-1"><div class="faculty-avatar">VH</div><div class="faculty-name">Dra. Lucía Vega Hernández</div><div class="faculty-title">Profesora de Biología</div><div class="faculty-cred" data-es="Obtuvo su doctorado en Biología Marina en la Universidad de Cádiz. Es especialista en ecología mediterránea y dirige el laboratorio de biología y el club de medio ambiente." data-en="Obtained her doctorate in Marine Biology from the University of Cádiz. Specialist in Mediterranean ecology who directs the biology laboratory and the environmental club.">Obtuvo su doctorado en Biología Marina en la Universidad de Cádiz. Es especialista en ecología mediterránea y dirige el laboratorio de biología y el club de medio ambiente.</div><span class="faculty-dept">Ciencias</span></div>
+  <div class="faculty-card reveal stagger-2"><div class="faculty-avatar">PT</div><div class="faculty-name">Prof. Andrés Prieto Torres</div><div class="faculty-title">Profesor de Lengua Castellana y Literatura</div><div class="faculty-cred" data-es="Estudió Filología Hispánica en la Universidad de Sevilla. Además de ser profesor, es escritor. Ganó el Premio Andaluz de Narrativa Breve y es la persona responsable del periódico escolar." data-en="He studied Hispanic Philology at the University of Seville. Besides being a teacher, he is a writer. He won the Andalusian Short Fiction Prize and is the person responsible for the school newspaper.">Estudió Filología Hispánica en la Universidad de Sevilla. Además de ser profesor, es escritor. Ganó el Premio Andaluz de Narrativa Breve y es la persona responsable del periódico escolar.</div><span class="faculty-dept">Humanidades</span></div>
+  <div class="faculty-card reveal stagger-3"><div class="faculty-avatar">OB</div><div class="faculty-name">Dra. Isabel Ortega Blanco</div><div class="faculty-title">Profesora de Geografía e Historia</div><div class="faculty-cred" data-es="Completó su doctorado en Historia Moderna en la Universidad de Barcelona. Es especialista en la historia de Al-Ándalus y ha colaborado con el Museo Arqueológico de Sevilla." data-en="Completed her doctorate in Modern History at the University of Barcelona. Specialist in the history of Al-Andalus who has collaborated with the Archaeological Museum of Seville.">Completó su doctorado en Historia Moderna en la Universidad de Barcelona. Es especialista en la historia de Al-Ándalus y ha colaborado con el Museo Arqueológico de Sevilla.</div><span class="faculty-dept">Humanidades</span></div>
+  <div class="faculty-card reveal stagger-4"><div class="faculty-avatar">JL</div><div class="faculty-name">Prof. Sarah Jenkins Lloyd</div><div class="faculty-title">Jefa del Departamento de Inglés</div><div class="faculty-cred" data-es="Completó un máster en Lingüística Aplicada en la Universidad de Cambridge. Es hablante nativa de inglés con certificación CELTA y DELTA. Lleva doce años enseñando inglés en España." data-en="Completed a Master's in Applied Linguistics at the University of Cambridge. Native English speaker with CELTA and DELTA certification. Has been teaching English in Spain for twelve years.">Completó un máster en Lingüística Aplicada en la Universidad de Cambridge. Es hablante nativa de inglés con certificación CELTA y DELTA. Lleva doce años enseñando inglés en España.</div><span class="faculty-dept">Lenguas Extranjeras</span></div>
+  <div class="faculty-card reveal stagger-5"><div class="faculty-avatar">MD</div><div class="faculty-name">Prof. Marie Dupont Lefèvre</div><div class="faculty-title">Profesora de Francés</div><div class="faculty-cred" data-es="Se licenció en Lenguas Modernas en la Sorbonne de París. Es hablante nativa de francés y coordina el programa de intercambio estudiantil con un liceo en Toulouse." data-en="Graduated in Modern Languages from the Sorbonne in Paris. Native French speaker who coordinates the student exchange programme with a lycée in Toulouse.">Se licenció en Lenguas Modernas en la Sorbonne de París. Es hablante nativa de francés y coordina el programa de intercambio estudiantil con un liceo en Toulouse.</div><span class="faculty-dept">Lenguas Extranjeras</span></div>
+  <div class="faculty-card reveal stagger-1"><div class="faculty-avatar">GM</div><div class="faculty-name">Prof. Pablo Guerrero Medina</div><div class="faculty-title">Profesor de Tecnología y Programación</div><div class="faculty-cred" data-es="Antes de ser profesor, el Prof. Guerrero trabajó cinco años como desarrollador de software en una empresa tecnológica. Estudió Ingeniería Informática en la Universidad Politécnica de Madrid. Sus alumnos dicen que sus clases son las más interesantes del instituto." data-en="Before becoming a teacher, Prof. Guerrero worked five years as a software developer at a technology company. He studied Computer Engineering at the Polytechnic University of Madrid. His students say his classes are the most interesting at the institute.">Antes de ser profesor, el Prof. Guerrero trabajó cinco años como desarrollador de software en una empresa tecnológica. Estudió Ingeniería Informática en la Universidad Politécnica de Madrid. Sus alumnos dicen que sus clases son las más interesantes del instituto.</div><span class="faculty-dept">Tecnología</span></div>
+  <div class="faculty-card reveal stagger-2"><div class="faculty-avatar">CF</div><div class="faculty-name">Prof. Marta Campos Fernández</div><div class="faculty-title">Profesora de Filosofía y Ética</div><div class="faculty-cred" data-es="Se licenció en Filosofía en la Universidad de Salamanca y completó estudios de posgrado en Ética Contemporánea. Dirige el club de debate y oratoria del instituto." data-en="Graduated in Philosophy from the University of Salamanca and completed postgraduate studies in Contemporary Ethics. Directs the institute's debate and public speaking club.">Se licenció en Filosofía en la Universidad de Salamanca y completó estudios de posgrado en Ética Contemporánea. Dirige el club de debate y oratoria del instituto.</div><span class="faculty-dept">Humanidades</span></div>
+  <div class="faculty-card reveal stagger-3"><div class="faculty-avatar">RA</div><div class="faculty-name">Prof. Javier Ramos Aguilar</div><div class="faculty-title">Director del Departamento de Música</div><div class="faculty-cred" data-es="Obtuvo el Título Superior en Piano en el Real Conservatorio Superior de Música de Madrid. Es concertista profesional y dirige la orquesta escolar, el coro y el conjunto de jazz." data-en="Obtained his Advanced Diploma in Piano from the Royal Superior Conservatory of Music in Madrid. Professional concert pianist who directs the school orchestra, choir, and jazz ensemble.">Obtuvo el Título Superior en Piano en el Real Conservatorio Superior de Música de Madrid. Es concertista profesional y dirige la orquesta escolar, el coro y el conjunto de jazz.</div><span class="faculty-dept">Artes</span></div>
+  <div class="faculty-card reveal stagger-4"><div class="faculty-avatar">SV</div><div class="faculty-name">Prof. Elena Serrano Vargas</div><div class="faculty-title">Profesora de Arte y Diseño</div><div class="faculty-cred" data-es="Se licenció en Bellas Artes en la Universidad de Málaga. Es artista plástica con exposiciones en galerías de Sevilla, Madrid y Lisboa. Coordina todas las actividades artísticas del colegio." data-en="Graduated in Fine Arts from the University of Málaga. Visual artist with exhibitions in galleries in Seville, Madrid, and Lisbon. Coordinates all artistic activities at the school.">Se licenció en Bellas Artes en la Universidad de Málaga. Es artista plástica con exposiciones en galerías de Sevilla, Madrid y Lisboa. Coordina todas las actividades artísticas del colegio.</div><span class="faculty-dept">Artes</span></div>
+  <div class="faculty-card reveal stagger-5"><div class="faculty-avatar">LC</div><div class="faculty-name">Prof. Tomás Luna Cordero</div><div class="faculty-title">Jefe del Departamento de Educación Física</div><div class="faculty-cred" data-es="Se licenció en Ciencias de la Actividad Física y del Deporte en la Universidad de Granada. Anteriormente, era entrenador de la selección juvenil de natación de Andalucía." data-en="Graduated in Physical Activity and Sport Sciences from the University of Granada. Previously coached the Andalusian youth swimming team.">Se licenció en Ciencias de la Actividad Física y del Deporte en la Universidad de Granada. Anteriormente, era entrenador de la selección juvenil de natación de Andalucía.</div><span class="faculty-dept">Deportes</span></div>
+  <div class="faculty-card reveal stagger-1"><div class="faculty-avatar">NR</div><div class="faculty-name">Prof. Sofía Nieto Reyes</div><div class="faculty-title">Profesora de Economía</div><div class="faculty-cred" data-es="La Prof. Nieto tiene un máster en Economía de la Universidad Carlos III de Madrid. Lo más interesante es que antes de ser profesora, trabajó seis años en el Banco de España como analista financiera. Esa experiencia hace que sus clases sean muy prácticas." data-en="Prof. Nieto holds a Master's in Economics from Carlos III University of Madrid. What's most interesting is that before becoming a teacher, she worked six years at the Bank of Spain as a financial analyst. That experience makes her classes very practical.">La Prof. Nieto tiene un máster en Economía de la Universidad Carlos III de Madrid. Lo más interesante es que antes de ser profesora, trabajó seis años en el Banco de España como analista financiera. Esa experiencia hace que sus clases sean muy prácticas.</div><span class="faculty-dept">Ciencias Sociales</span></div>
+  <div class="faculty-card reveal stagger-2"><div class="faculty-avatar">HP</div><div class="faculty-name">Prof. Rafael Herrera Ponce</div><div class="faculty-title">Profesor de Matemáticas</div><div class="faculty-cred" data-es="Se licenció en Estadística Matemática en la Universidad de Córdoba. Es preparador de alumnos para las Olimpiadas Nacionales de Matemáticas y tiene ocho años de experiencia docente." data-en="Graduated in Mathematical Statistics from the University of Córdoba. Prepares students for the National Mathematics Olympiad and has eight years of teaching experience.">Se licenció en Estadística Matemática en la Universidad de Córdoba. Es preparador de alumnos para las Olimpiadas Nacionales de Matemáticas y tiene ocho años de experiencia docente.</div><span class="faculty-dept">Matemáticas</span></div>
+  <div class="faculty-card reveal stagger-3"><div class="faculty-avatar">AM</div><div class="faculty-name">Prof. Ana Belén Arias Molina</div><div class="faculty-title">Orientadora Escolar</div><div class="faculty-cred" data-es="Estudió Psicología Educativa en la Universidad de Sevilla y después hizo un máster en Orientación y Mediación Familiar. Su trabajo es cuidar del bienestar emocional y académico de todos los alumnos, y lo hace con mucha dedicación." data-en="She studied Educational Psychology at the University of Seville and then completed a Master's in Guidance and Family Mediation. Her job is to look after the emotional and academic wellbeing of all students, and she does it with great dedication.">Estudió Psicología Educativa en la Universidad de Sevilla y después hizo un máster en Orientación y Mediación Familiar. Su trabajo es cuidar del bienestar emocional y académico de todos los alumnos, y lo hace con mucha dedicación.</div><span class="faculty-dept">Orientación</span></div>
+</div></div>
+<div class="page-nav-footer"><div class="next-label" data-es="Página siguiente" data-en="Next page">Página siguiente</div><a class="page-nav-btn" onclick="showPage('campus')" data-es="Recorrido del Campus" data-en="Campus Tour">Recorrido del Campus <span class="arrow">→</span></a></div>
+</div>
+
+<!-- ==================== CAMPUS ==================== -->
+<div class="page" id="page-campus">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Recorrido Virtual" data-en="Virtual Tour">Recorrido Virtual</p><h1 data-es="Nuestro Campus" data-en="Our Campus">Nuestro Campus</h1><p data-es="Un campus histórico con edificios del siglo XIX y tecnología moderna. Aquí es donde nuestros estudiantes aprenden, juegan y crecen." data-en="A historic campus with 19th-century buildings and modern technology. This is where our students learn, play, and grow.">Un campus histórico con edificios del siglo XIX y tecnología moderna. Aquí es donde nuestros estudiantes aprenden, juegan y crecen.</p></div>
+
+<div class="content-wrap reveal">
+  <div class="prose"><p data-es="El campus del Instituto Cervantes del Sur ocupa una extensión de más de tres hectáreas en el barrio histórico de Santa Cruz, a escasos minutos de la célebre Catedral de Sevilla. El edificio principal fue construido en 1845 con piedra dorada típica de la arquitectura andaluza." data-en="The campus of the Instituto Cervantes del Sur covers an area of more than three hectares in the historic Santa Cruz quarter, just minutes from the famous Seville Cathedral. The main building was constructed in 1845 using golden stone typical of Andalusian architecture.">El campus del Instituto Cervantes del Sur ocupa una extensión de más de tres hectáreas en el barrio histórico de Santa Cruz, a escasos minutos de la célebre Catedral de Sevilla. El edificio principal fue construido en 1845 con piedra dorada típica de la arquitectura andaluza.</p></div>
+  <div class="campus-visual" style="aspect-ratio:16/10; background:var(--cream-mid); border:2px solid var(--gold);">
+    <svg viewBox="0 0 900 560" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <!-- ground -->
+      <rect width="900" height="560" fill="#E8DFD0"/>
+      <!-- pathways -->
+      <rect x="100" y="270" width="700" height="18" rx="2" fill="#D4C9B8"/>
+      <rect x="440" y="60" width="18" height="440" rx="2" fill="#D4C9B8"/>
+      <rect x="200" y="150" width="18" height="260" rx="2" fill="#D4C9B8"/>
+      <rect x="680" y="150" width="18" height="260" rx="2" fill="#D4C9B8"/>
+      <!-- grass areas -->
+      <rect x="30" y="400" width="160" height="130" rx="4" fill="#B5C9A8" opacity="0.5"/>
+      <rect x="710" y="400" width="160" height="130" rx="4" fill="#B5C9A8" opacity="0.5"/>
+      <rect x="30" y="30" width="160" height="110" rx="4" fill="#B5C9A8" opacity="0.4"/>
+      
+      <!-- EDIFICIO PRINCIPAL (main building) -->
+      <g class="map-building" onclick="showCampusDetail('edificio')" style="cursor:pointer">
+        <rect x="240" y="70" width="180" height="90" rx="3" fill="#2D4A2D" stroke="#B8963E" stroke-width="1.5"/>
+        <rect x="260" y="80" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="300" y="80" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="340" y="80" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="380" y="80" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="260" y="110" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="300" y="110" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="340" y="110" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="380" y="110" width="30" height="20" rx="1" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="310" y="135" width="40" height="25" rx="2" fill="#B8963E" opacity="0.8"/>
+        <text x="330" y="55" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#2D4A2D">EDIFICIO PRINCIPAL</text>
+      </g>
+      
+      <!-- BIBLIOTECA -->
+      <g class="map-building" onclick="showCampusDetail('biblioteca')" style="cursor:pointer">
+        <rect x="500" y="70" width="140" height="80" rx="3" fill="#2D4A2D" stroke="#B8963E" stroke-width="1.5"/>
+        <rect x="515" y="85" width="20" height="50" rx="1" fill="#96792F" opacity="0.5"/>
+        <rect x="545" y="85" width="20" height="50" rx="1" fill="#96792F" opacity="0.5"/>
+        <rect x="575" y="85" width="20" height="50" rx="1" fill="#96792F" opacity="0.5"/>
+        <rect x="605" y="85" width="20" height="50" rx="1" fill="#96792F" opacity="0.5"/>
+        <text x="570" y="55" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#2D4A2D">BIBLIOTECA</text>
+      </g>
+      
+      <!-- PATIO CENTRAL with fountain -->
+      <g class="map-building" onclick="showCampusDetail('patio')" style="cursor:pointer">
+        <rect x="320" y="195" width="160" height="140" rx="4" fill="#C8D4B8" stroke="#3D6B3D" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <circle cx="400" cy="265" r="22" fill="none" stroke="#8A8475" stroke-width="1.5"/>
+        <circle cx="400" cy="265" r="8" fill="#A8C4E0" opacity="0.6"/>
+        <!-- orange trees -->
+        <circle cx="340" cy="215" r="8" fill="#3D6B3D" opacity="0.7"/>
+        <circle cx="460" cy="215" r="8" fill="#3D6B3D" opacity="0.7"/>
+        <circle cx="340" cy="315" r="8" fill="#3D6B3D" opacity="0.7"/>
+        <circle cx="460" cy="315" r="8" fill="#3D6B3D" opacity="0.7"/>
+        <circle cx="340" cy="215" r="3" fill="#D4923E"/>
+        <circle cx="460" cy="215" r="3" fill="#D4923E"/>
+        <circle cx="340" cy="315" r="3" fill="#D4923E"/>
+        <circle cx="460" cy="315" r="3" fill="#D4923E"/>
+        <text x="400" y="188" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#2D4A2D">PATIO DE LOS</text>
+        <text x="400" y="200" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#2D4A2D">NARANJOS</text>
+      </g>
+      
+      <!-- LABORATORIOS -->
+      <g class="map-building" onclick="showCampusDetail('labs')" style="cursor:pointer">
+        <rect x="60" y="180" width="120" height="70" rx="3" fill="#2D4A2D" stroke="#B8963E" stroke-width="1.5"/>
+        <circle cx="90" cy="210" r="6" fill="none" stroke="#D4B36A" stroke-width="1"/>
+        <circle cx="120" cy="210" r="6" fill="none" stroke="#D4B36A" stroke-width="1"/>
+        <circle cx="150" cy="210" r="6" fill="none" stroke="#D4B36A" stroke-width="1"/>
+        <text x="120" y="170" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#2D4A2D">LABORATORIOS</text>
+      </g>
+      
+      <!-- COMEDOR -->
+      <g class="map-building" onclick="showCampusDetail('comedor')" style="cursor:pointer">
+        <rect x="520" y="195" width="130" height="75" rx="3" fill="#2D4A2D" stroke="#B8963E" stroke-width="1.5"/>
+        <rect x="540" y="210" width="16" height="16" rx="1" fill="#96792F" opacity="0.4"/>
+        <rect x="565" y="210" width="16" height="16" rx="1" fill="#96792F" opacity="0.4"/>
+        <rect x="590" y="210" width="16" height="16" rx="1" fill="#96792F" opacity="0.4"/>
+        <rect x="540" y="235" width="16" height="16" rx="1" fill="#96792F" opacity="0.4"/>
+        <rect x="565" y="235" width="16" height="16" rx="1" fill="#96792F" opacity="0.4"/>
+        <rect x="590" y="235" width="16" height="16" rx="1" fill="#96792F" opacity="0.4"/>
+        <text x="585" y="185" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#2D4A2D">COMEDOR</text>
+      </g>
+      
+      <!-- SALA DE MUSICA -->
+      <g class="map-building" onclick="showCampusDetail('musica')" style="cursor:pointer">
+        <rect x="700" y="80" width="120" height="65" rx="3" fill="#2D4A2D" stroke="#B8963E" stroke-width="1.5"/>
+        <text x="760" y="107" text-anchor="middle" font-family="serif" font-size="20" fill="#D4B36A">♪</text>
+        <text x="760" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#2D4A2D">SALA DE MÚSICA</text>
+      </g>
+      
+      <!-- SALA DE INFORMATICA -->
+      <g class="map-building" onclick="showCampusDetail('informatica')" style="cursor:pointer">
+        <rect x="700" y="195" width="120" height="65" rx="3" fill="#2D4A2D" stroke="#B8963E" stroke-width="1.5"/>
+        <rect x="720" y="210" width="18" height="14" rx="2" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="745" y="210" width="18" height="14" rx="2" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="770" y="210" width="18" height="14" rx="2" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="720" y="230" width="18" height="14" rx="2" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="745" y="230" width="18" height="14" rx="2" fill="#3D6B3D" opacity="0.6"/>
+        <rect x="770" y="230" width="18" height="14" rx="2" fill="#3D6B3D" opacity="0.6"/>
+        <text x="760" y="185" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#2D4A2D">INFORMÁTICA</text>
+      </g>
+      
+      <!-- SPORTS COMPLEX -->
+      <g class="map-building" onclick="showCampusDetail('deportes')" style="cursor:pointer">
+        <!-- football field -->
+        <rect x="60" y="360" width="180" height="100" rx="3" fill="#7BA668" stroke="#5A8A45" stroke-width="1.5"/>
+        <rect x="65" y="365" width="170" height="90" rx="2" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+        <line x1="150" y1="365" x2="150" y2="455" stroke="white" stroke-width="1" opacity="0.5"/>
+        <circle cx="150" cy="410" r="18" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+        <!-- tennis courts -->
+        <rect x="260" y="370" width="50" height="80" rx="2" fill="#C4906B" stroke="#A07050" stroke-width="1"/>
+        <line x1="285" y1="370" x2="285" y2="450" stroke="white" stroke-width="0.7" opacity="0.5"/>
+        <rect x="320" y="370" width="50" height="80" rx="2" fill="#C4906B" stroke="#A07050" stroke-width="1"/>
+        <line x1="345" y1="370" x2="345" y2="450" stroke="white" stroke-width="0.7" opacity="0.5"/>
+        <!-- pool -->
+        <rect x="400" y="380" width="80" height="40" rx="3" fill="#7BAFD4" stroke="#5A8FB4" stroke-width="1.5"/>
+        <line x1="420" y1="385" x2="420" y2="415" stroke="white" stroke-width="0.5" opacity="0.4"/>
+        <line x1="440" y1="385" x2="440" y2="415" stroke="white" stroke-width="0.5" opacity="0.4"/>
+        <line x1="460" y1="385" x2="460" y2="415" stroke="white" stroke-width="0.5" opacity="0.4"/>
+        <!-- basketball courts -->
+        <rect x="400" y="430" width="60" height="35" rx="2" fill="#D4C4A8" stroke="#B8A88C" stroke-width="1"/>
+        <rect x="470" y="430" width="60" height="35" rx="2" fill="#D4C4A8" stroke="#B8A88C" stroke-width="1"/>
+        <!-- athletics track -->
+        <ellipse cx="640" cy="430" rx="85" ry="55" fill="none" stroke="#C4906B" stroke-width="6" opacity="0.5"/>
+        <ellipse cx="640" cy="430" rx="65" ry="40" fill="#7BA668" opacity="0.4"/>
+        <text x="400" y="355" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#2D4A2D">COMPLEJO DEPORTIVO</text>
+      </g>
+      
+      <!-- scattered trees -->
+      <circle cx="50" cy="60" r="10" fill="#3D6B3D" opacity="0.5"/>
+      <circle cx="80" cy="80" r="8" fill="#4A7A4A" opacity="0.4"/>
+      <circle cx="160" cy="45" r="9" fill="#3D6B3D" opacity="0.45"/>
+      <circle cx="850" cy="50" r="10" fill="#3D6B3D" opacity="0.5"/>
+      <circle cx="830" cy="80" r="7" fill="#4A7A4A" opacity="0.4"/>
+      <circle cx="760" cy="310" r="9" fill="#3D6B3D" opacity="0.4"/>
+      <circle cx="50" cy="310" r="8" fill="#3D6B3D" opacity="0.45"/>
+      <circle cx="550" cy="340" r="7" fill="#4A7A4A" opacity="0.35"/>
+      <circle cx="240" cy="340" r="8" fill="#3D6B3D" opacity="0.4"/>
+      
+      <!-- entrance -->
+      <rect x="395" y="500" width="50" height="30" rx="2" fill="#96792F" opacity="0.6"/>
+      <text x="420" y="540" text-anchor="middle" font-family="Playfair Display,serif" font-size="8" font-weight="600" fill="#5A5A55">ENTRADA</text>
+      
+      <!-- compass -->
+      <g transform="translate(845,520)">
+        <circle r="15" fill="none" stroke="#8A8475" stroke-width="0.8"/>
+        <text y="-5" text-anchor="middle" font-family="Playfair Display,serif" font-size="8" font-weight="700" fill="#8A8475">N</text>
+        <line x1="0" y1="-2" x2="0" y2="8" stroke="#8A8475" stroke-width="0.8"/>
+      </g>
+      
+      <!-- legend -->
+      <g transform="translate(30,500)">
+        <text font-family="Playfair Display,serif" font-size="8" font-weight="600" fill="#8A8475" letter-spacing="1">PULSE UN EDIFICIO PARA VER MÁS INFORMACIÓN</text>
+      </g>
+
+      <!-- building hover highlights (CSS handles this) -->
+      <style>
+        .map-building rect, .map-building ellipse { transition: all 0.3s ease; }
+        .map-building:hover rect:first-child { stroke: #D4B36A; stroke-width: 2.5; filter: drop-shadow(0 2px 6px rgba(184,150,62,0.3)); }
+        .map-building:hover text { fill: #B8963E; }
+      </style>
+    </svg>
+  </div>
+  <div class="campus-detail-panel" id="campusDetail"><h3 data-es="↑ Pulse un edificio en el mapa" data-en="↑ Click a building on the map">↑ Pulse un edificio en el mapa</h3><p data-es="Cada edificio es interactivo. Al hacer clic, aparece una descripción del espacio." data-en="Each building is interactive. Click to see a description of the space.">Cada edificio es interactivo. Al hacer clic, aparece una descripción del espacio.</p></div>
+</div>
+
+<div class="dark-band"><div class="content-inner-wide reveal">
+  <p class="section-sub" data-es="Instalaciones" data-en="Facilities">Instalaciones</p>
+  <h2 class="section-heading" data-es="¿Qué tiene nuestro campus?" data-en="What does our campus have?">¿Qué tiene nuestro campus?</h2>
+  <div class="card-grid">
+    <div class="card reveal stagger-1"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="4" y="12" width="20" height="14" rx="1" fill="#2D4A2D"/><polygon points="14,3 2,12 26,12" fill="#3D6B3D"/><rect x="8" y="16" width="4" height="4" rx="0.5" fill="#B8963E" opacity="0.6"/><rect x="16" y="16" width="4" height="4" rx="0.5" fill="#B8963E" opacity="0.6"/><rect x="12" y="20" width="4" height="6" rx="0.5" fill="#B8963E" opacity="0.8"/></svg></div><h3 data-es="Las Aulas" data-en="The Classrooms">Las Aulas</h3><p data-es="El instituto tiene treinta y dos aulas amplias y luminosas. Cada una está equipada con pizarras digitales interactivas, proyectores de alta definición y conexión a internet de fibra óptica. Las ventanas de arco permiten la entrada de abundante luz natural." data-en="The institute has thirty-two spacious, bright classrooms. Each one is equipped with interactive digital whiteboards, high-definition projectors, and fibre-optic internet. The arched windows allow abundant natural light to enter.">El instituto tiene treinta y dos aulas amplias y luminosas. Cada una está equipada con pizarras digitales interactivas, proyectores de alta definición y conexión a internet de fibra óptica. Las ventanas de arco permiten la entrada de abundante luz natural.</p></div>
+    <div class="card reveal stagger-2"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="11" y="2" width="6" height="10" rx="1" fill="#3D6B3D"/><path d="M8 26 L11 12 L17 12 L20 26 Z" fill="#2D4A2D" rx="1"/><circle cx="14" cy="20" r="3" fill="#B8963E" opacity="0.5"/><rect x="9" y="2" width="10" height="2" rx="1" fill="#B8963E"/></svg></div><h3 data-es="Los Laboratorios de Ciencias" data-en="The Science Laboratories">Los Laboratorios de Ciencias</h3><p data-es="El colegio tiene tres laboratorios especializados: Física, Química y Biología. Cada laboratorio está dotado con equipos de última generación, microscopios profesionales y campanas de extracción. Los alumnos realizan experimentos prácticos todas las semanas." data-en="The school has three specialised laboratories: Physics, Chemistry, and Biology. Each laboratory is equipped with state-of-the-art equipment, professional microscopes, and extraction hoods. Students conduct practical experiments every week.">El colegio tiene tres laboratorios especializados: Física, Química y Biología. Cada laboratorio está dotado con equipos de última generación, microscopios profesionales y campanas de extracción. Los alumnos realizan experimentos prácticos todas las semanas.</p></div>
+    <div class="card reveal stagger-3"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="4" y="4" width="20" height="14" rx="2" fill="#2D4A2D"/><rect x="6" y="6" width="16" height="10" rx="1" fill="#3D6B3D" opacity="0.6"/><rect x="10" y="20" width="8" height="2" rx="0.5" fill="#8A8475"/><rect x="6" y="22" width="16" height="2" rx="1" fill="#B8963E"/></svg></div><h3 data-es="La Sala de Informática" data-en="The Computer Room">La Sala de Informática</h3><p data-es="La sala de informática tiene cuarenta ordenadores de última generación. Los estudiantes están aprendiendo programación en Python y Java, diseño gráfico, robótica y modelado en tres dimensiones. El año pasado, el instituto compró dos impresoras 3D para los proyectos tecnológicos." data-en="The computer room has forty state-of-the-art computers. Students are learning programming in Python and Java, graphic design, robotics, and 3D modelling. Last year, the institute purchased two 3D printers for technology projects.">La sala de informática tiene cuarenta ordenadores de última generación. Los estudiantes están aprendiendo programación en Python y Java, diseño gráfico, robótica y modelado en tres dimensiones. El año pasado, el instituto compró dos impresoras 3D para los proyectos tecnológicos.</p></div>
+    <div class="card reveal stagger-4"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><ellipse cx="8" cy="22" rx="4" ry="3" fill="#2D4A2D"/><ellipse cx="22" cy="19" rx="4" ry="3" fill="#2D4A2D"/><rect x="11" y="6" width="2" height="16" fill="#3D6B3D"/><rect x="25" y="3" width="2" height="16" fill="#3D6B3D"/><rect x="11" y="4" width="16" height="4" rx="1" fill="#B8963E"/></svg></div><h3 data-es="La Sala de Música y el Auditorio" data-en="The Music Room and Auditorium">La Sala de Música y el Auditorio</h3><p data-es="La sala de música está completamente insonorizada y tiene un piano de cola Steinway, guitarras, violines, flautas y un pequeño estudio de grabación profesional. El auditorio, con capacidad para trescientas personas, acoge los conciertos y las obras de teatro del colegio." data-en="The music room is fully soundproofed and contains a Steinway grand piano, guitars, violins, flutes, and a small professional recording studio. The auditorium, seating three hundred people, hosts the school's concerts and theatrical productions.">La sala de música está completamente insonorizada y tiene un piano de cola Steinway, guitarras, violines, flautas y un pequeño estudio de grabación profesional. El auditorio, con capacidad para trescientas personas, acoge los conciertos y las obras de teatro del colegio.</p></div>
+    <div class="card reveal stagger-5"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="3" y="6" width="5" height="18" rx="1" fill="#2D4A2D"/><rect x="9" y="4" width="5" height="20" rx="1" fill="#3D6B3D"/><rect x="15" y="7" width="5" height="17" rx="1" fill="#96792F"/><rect x="21" y="5" width="5" height="19" rx="1" fill="#B8963E"/></svg></div><h3 data-es="La Gran Biblioteca" data-en="The Grand Library">La Gran Biblioteca</h3><p data-es="La biblioteca es el edificio más bonito del campus. Tiene techos de madera tallada y estanterías de roble. Hay más de veinticinco mil libros en dos plantas. La planta baja ofrece zonas de lectura silenciosa con sillones de cuero, y la planta superior tiene seis salas de estudio en grupo. Fue renovada el año pasado." data-en="The library is the most beautiful building on campus. It has carved wooden ceilings and oak bookshelves. There are more than twenty-five thousand books across two floors. The ground floor offers silent reading areas with leather armchairs, and the upper floor has six group study rooms. It was renovated last year.">La biblioteca es el edificio más bonito del campus. Tiene techos de madera tallada y estanterías de roble. Hay más de veinticinco mil libros en dos plantas. La planta baja ofrece zonas de lectura silenciosa con sillones de cuero, y la planta superior tiene seis salas de estudio en grupo. Fue renovada el año pasado.</p></div>
+    <div class="card reveal stagger-1"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="15" r="10" fill="none" stroke="#2D4A2D" stroke-width="1.5"/><circle cx="14" cy="15" r="7" fill="none" stroke="#B8963E" stroke-width="0.8"/><rect x="2" y="13" width="3" height="10" rx="1" fill="#8A8475"/><rect x="2" y="8" width="1" height="6" rx="0.5" fill="#8A8475"/><rect x="4" y="8" width="1" height="6" rx="0.5" fill="#8A8475"/><rect x="24" y="8" width="2" height="16" rx="1" fill="#8A8475"/></svg></div><h3 data-es="El Comedor y la Cafetería" data-en="The Dining Hall and Café">El Comedor y la Cafetería</h3><p data-es="El comedor tiene capacidad para doscientos cincuenta comensales. Los cocineros preparan menús equilibrados con productos frescos y locales: gazpacho andaluz, tortilla española, ensaladas variadas y postres caseros. También hay una cafetería junto al patio donde los alumnos compran bocadillos y zumos durante los recreos." data-en="The dining hall seats two hundred and fifty. The chefs prepare balanced menus with fresh, local produce: Andalusian gazpacho, Spanish omelette, varied salads, and homemade desserts. There is also a café next to the courtyard where students buy sandwiches and juices during breaks.">El comedor tiene capacidad para doscientos cincuenta comensales. Los cocineros preparan menús equilibrados con productos frescos y locales: gazpacho andaluz, tortilla española, ensaladas variadas y postres caseros. También hay una cafetería junto al patio donde los alumnos compran bocadillos y zumos durante los recreos.</p></div>
+  </div>
+</div></div>
+<div class="page-nav-footer"><div class="next-label" data-es="Página siguiente" data-en="Next page">Página siguiente</div><a class="page-nav-btn" onclick="showPage('life')" data-es="La Vida Escolar" data-en="School Life">La Vida Escolar <span class="arrow">→</span></a></div>
+</div>
+
+<!-- ==================== LIFE ==================== -->
+<div class="page" id="page-life">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Más Allá del Aula" data-en="Beyond the Classroom">Más Allá del Aula</p><h1 data-es="La Vida Escolar" data-en="School Life">La Vida Escolar</h1><p data-es="Deportes, clubes, música y mucho más. En este instituto, la educación no termina cuando suena el timbre." data-en="Sports, clubs, music, and much more. At this institute, education doesn't end when the bell rings.">Deportes, clubes, música y mucho más. En este instituto, la educación no termina cuando suena el timbre.</p></div>
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="El Día a Día" data-en="Daily Life">El Día a Día</p>
+  <h2 class="section-heading" data-es="¿Qué hacen los estudiantes durante la jornada escolar?" data-en="What do students do during the school day?">¿Qué hacen los estudiantes durante la jornada escolar?</h2>
+  <div class="gold-rule"></div>
+  <div class="prose">
+    <p data-es="Los estudiantes llegan al instituto antes de las ocho de la mañana. Se reúnen con sus compañeros en el patio central, que es un espacio abierto muy bonito con naranjos centenarios y una fuente de piedra. Cuando suena el timbre, van a sus aulas y comienzan las clases." data-en="Students arrive at the institute before eight in the morning. They meet with their classmates in the central courtyard, which is a very beautiful open space with centuries-old orange trees and a stone fountain. When the bell rings, they go to their classrooms and begin their lessons.">Los estudiantes llegan al instituto antes de las ocho de la mañana. Se reúnen con sus compañeros en el patio central, que es un espacio abierto muy bonito con naranjos centenarios y una fuente de piedra. Cuando suena el timbre, van a sus aulas y comienzan las clases.</p>
+    <p data-es="Durante el recreo, muchos alumnos compran bocadillos en la cafetería o charlan con sus amigos bajo la sombra de los naranjos. A la hora del almuerzo, la mayoría come en el comedor del colegio. Los cocineros preparan platos caseros con ingredientes frescos como gazpacho andaluz, tortillas, ensaladas y postres artesanales. La comida es muy buena." data-en="During break, many students buy sandwiches at the café or chat with their friends in the shade of the orange trees. At lunchtime, most eat in the school dining hall. The chefs prepare homemade dishes with fresh ingredients such as Andalusian gazpacho, omelettes, salads, and artisan desserts. The food is very good.">Durante el recreo, muchos alumnos compran bocadillos en la cafetería o charlan con sus amigos bajo la sombra de los naranjos. A la hora del almuerzo, la mayoría come en el comedor del colegio. Los cocineros preparan platos caseros con ingredientes frescos como gazpacho andaluz, tortillas, ensaladas y postres artesanales. La comida es muy buena.</p>
+    <p data-es="Por la tarde, después de la última clase, el campus se transforma completamente. Se escucha música de la sala de ensayos, los deportistas están entrenando en los campos y las canchas, y otros alumnos están estudiando en la biblioteca. Todos son diferentes, pero comparten el mismo espíritu: quieren aprovechar cada oportunidad que ofrece el instituto. El colegio permanece abierto hasta las seis de la tarde para las actividades extraescolares." data-en="In the afternoon, after the last class, the campus transforms completely. Music can be heard from the rehearsal room, athletes are training on the fields and courts, and other students are studying in the library. Everyone is different, but they share the same spirit: they want to make the most of every opportunity the institute offers. The school remains open until six in the evening for extracurricular activities.">Por la tarde, después de la última clase, el campus se transforma completamente. Se escucha música de la sala de ensayos, los deportistas están entrenando en los campos y las canchas, y otros alumnos están estudiando en la biblioteca. Todos son diferentes, pero comparten el mismo espíritu: quieren aprovechar cada oportunidad que ofrece el instituto. El colegio permanece abierto hasta las seis de la tarde para las actividades extraescolares.</p>
+  </div>
+</div>
+
+<hr class="soft-divider">
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="Deportes" data-en="Sports">Deportes</p>
+  <h2 class="section-heading" data-es="Disciplina, esfuerzo y espíritu deportivo" data-en="Discipline, effort, and sportsmanship">Disciplina, esfuerzo y espíritu deportivo</h2>
+  <div class="gold-rule"></div>
+  <div class="prose"><p data-es="En el Instituto Cervantes del Sur, el deporte es muy importante. Creemos que es una parte fundamental de la educación. Las instalaciones deportivas son de muy buena calidad y los estudiantes pueden practicar muchos deportes durante todo el año." data-en="At the Instituto Cervantes del Sur, sport is very important. We believe it is a fundamental part of education. The sports facilities are of very good quality and students can practise many sports throughout the year.">En el Instituto Cervantes del Sur, el deporte es muy importante. Creemos que es una parte fundamental de la educación. Las instalaciones deportivas son de muy buena calidad y los estudiantes pueden practicar muchos deportes durante todo el año.</p></div>
+  <div class="card-grid">
+    <div class="card reveal stagger-1"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="#2D4A2D" stroke-width="2"/><circle cx="14" cy="14" r="11" fill="none" stroke="#B8963E" stroke-width="0.5" stroke-dasharray="4 3"/><circle cx="14" cy="14" r="4" fill="none" stroke="#3D6B3D" stroke-width="1"/></svg></div><h3 data-es="Campos y Canchas" data-en="Fields and Courts">Campos y Canchas</h3><p data-es="El colegio tiene un campo de fútbol de césped natural, dos canchas de baloncesto al aire libre, una cancha cubierta de voleibol y cuatro pistas de tenis de tierra batida. Todas las instalaciones fueron renovadas hace dos años e incluyen iluminación nocturna." data-en="The school has a natural grass football pitch, two outdoor basketball courts, an indoor volleyball court, and four clay tennis courts. All facilities were renovated two years ago and include night lighting.">El colegio tiene un campo de fútbol de césped natural, dos canchas de baloncesto al aire libre, una cancha cubierta de voleibol y cuatro pistas de tenis de tierra batida. Todas las instalaciones fueron renovadas hace dos años e incluyen iluminación nocturna.</p></div>
+    <div class="card reveal stagger-2"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="2" y="10" width="24" height="14" rx="2" fill="#7BAFD4" opacity="0.4"/><path d="M2 16 Q7 13 12 16 Q17 19 22 16 Q24 15 26 16" stroke="#5A8FB4" stroke-width="1.5" fill="none"/><path d="M2 20 Q7 17 12 20 Q17 23 22 20 Q24 19 26 20" stroke="#5A8FB4" stroke-width="1" fill="none" opacity="0.5"/></svg></div><h3 data-es="La Piscina Olímpica" data-en="The Olympic Pool">La Piscina Olímpica</h3><p data-es="La piscina climatizada de veinticinco metros está abierta durante todo el curso. Los alumnos de primer y segundo curso reciben clases obligatorias de natación. Los nadadores avanzados compiten a nivel regional representando al instituto." data-en="The heated twenty-five-metre pool is open throughout the school year. First and second year students receive compulsory swimming lessons. Advanced swimmers compete at a regional level representing the institute.">La piscina climatizada de veinticinco metros está abierta durante todo el curso. Los alumnos de primer y segundo curso reciben clases obligatorias de natación. Los nadadores avanzados compiten a nivel regional representando al instituto.</p></div>
+    <div class="card reveal stagger-3"><div class="card-icon"><svg width="28" height="28" viewBox="0 0 28 28"><circle cx="16" cy="5" r="3" fill="#2D4A2D"/><path d="M12 10 L16 8 L20 12 L18 18 L22 24" stroke="#2D4A2D" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M16 8 L14 14 L8 20" stroke="#2D4A2D" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M14 14 L18 18" stroke="#2D4A2D" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><h3 data-es="Atletismo, Gimnasia y Artes Marciales" data-en="Athletics, Gymnastics, and Martial Arts">Atletismo, Gimnasia y Artes Marciales</h3><p data-es="El instituto también tiene una pista de atletismo de cuatrocientos metros, un gimnasio cubierto completamente equipado y una sala especializada de artes marciales. Cada trimestre se organizan campeonatos internos entre las cuatro casas del colegio: Montoya, Cervantes, Alhambra y Giralda." data-en="The institute also has a four-hundred-metre athletics track, a fully equipped indoor gymnasium, and a specialised martial arts room. Each term, internal championships are organised between the school's four houses: Montoya, Cervantes, Alhambra, and Giralda.">El instituto también tiene una pista de atletismo de cuatrocientos metros, un gimnasio cubierto completamente equipado y una sala especializada de artes marciales. Cada trimestre se organizan campeonatos internos entre las cuatro casas del colegio: Montoya, Cervantes, Alhambra y Giralda.</p></div>
+  </div>
+</div>
+
+<div class="dark-band"><div class="content-inner reveal">
+  <p class="section-sub" data-es="Clubes y Actividades Extraescolares" data-en="Clubs and Extracurricular Activities">Clubes y Actividades Extraescolares</p>
+  <h2 class="section-heading" data-es="Pasión más allá del currículo" data-en="Passion beyond the curriculum">Pasión más allá del currículo</h2>
+  <div class="prose"><p data-es="Después de las clases, los estudiantes pueden participar en muchos clubes y actividades diferentes. Los clubes están dirigidos por profesores y, a veces, por profesionales invitados. Se reúnen dos o tres veces por semana." data-en="After classes, students can participate in many different clubs and activities. The clubs are led by teachers and, sometimes, by invited professionals. They meet two or three times per week.">Después de las clases, los estudiantes pueden participar en muchos clubes y actividades diferentes. Los clubes están dirigidos por profesores y, a veces, por profesionales invitados. Se reúnen dos o tres veces por semana.</p></div>
+  <ul class="feat-list"><li>Club de Debate y Oratoria</li><li>Club de Ciencias y Robótica</li><li>Club de Ajedrez</li><li>Club de Teatro y Artes Dramáticas</li><li>Club de Fotografía</li><li>Club de Voluntariado Social</li><li>Club de Cocina Española</li><li>Club de Periodismo (<em>La Voz del Sur</em>)</li><li>Club de Literatura y Escritura Creativa</li><li>Club de Medio Ambiente</li></ul>
+  <div class="prose" style="margin-top:1.5rem"><p data-es="El año pasado, el club de debate ganó el primer puesto en el Campeonato Regional de Oratoria de Andalucía. Y el club de robótica presentó un proyecto muy innovador en la Feria Nacional de Ciencias de Madrid. ¡Estamos muy orgullosos de nuestros alumnos!" data-en="Last year, the debate club won first place at the Andalusian Regional Public Speaking Championship. And the robotics club presented a very innovative project at the National Science Fair in Madrid. We are very proud of our students!">El año pasado, el club de debate ganó el primer puesto en el Campeonato Regional de Oratoria de Andalucía. Y el club de robótica presentó un proyecto muy innovador en la Feria Nacional de Ciencias de Madrid. ¡Estamos muy orgullosos de nuestros alumnos!</p></div>
+</div></div>
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="Música y Artes Escénicas" data-en="Music and Performing Arts">Música y Artes Escénicas</p>
+  <h2 class="section-heading" data-es="La música en nuestro instituto" data-en="Music at our institute">La música en nuestro instituto</h2>
+  <div class="gold-rule"></div>
+  <div class="prose">
+    <p data-es="La música ocupa un lugar central en la vida del instituto. Todos los alumnos reciben formación musical obligatoria durante los tres primeros cursos. Después, pueden continuar como actividad extraescolar o como asignatura optativa en bachillerato." data-en="Music occupies a central place in the life of the institute. All students receive compulsory music education during the first three years. Afterwards, they can continue as an extracurricular activity or as an optional subject in the baccalaureate.">La música ocupa un lugar central en la vida del instituto. Todos los alumnos reciben formación musical obligatoria durante los tres primeros cursos. Después, pueden continuar como actividad extraescolar o como asignatura optativa en bachillerato.</p>
+    <p data-es="Los instrumentos que se enseñan en el instituto son: el piano, la guitarra clásica, la guitarra eléctrica, el violín, el violonchelo, la flauta travesera, el clarinete, el saxofón, la batería, la trompeta y el cajón flamenco. Este último es un instrumento de percusión muy importante en la tradición musical andaluza que conecta a nuestros alumnos con las raíces culturales de Sevilla." data-en="The instruments taught at the institute are: the piano, classical guitar, electric guitar, violin, cello, transverse flute, clarinet, saxophone, drums, trumpet, and the cajón flamenco. The latter is a very important percussion instrument in the Andalusian musical tradition that connects our students with the cultural roots of Seville.">Los instrumentos que se enseñan en el instituto son: el piano, la guitarra clásica, la guitarra eléctrica, el violín, el violonchelo, la flauta travesera, el clarinete, el saxofón, la batería, la trompeta y el cajón flamenco. Este último es un instrumento de percusión muy importante en la tradición musical andaluza que conecta a nuestros alumnos con las raíces culturales de Sevilla.</p>
+    <p data-es="El colegio tiene una orquesta escolar de cuarenta músicos, un coro de sesenta voces y un conjunto de jazz muy popular. Cada mes de diciembre, los estudiantes organizan un gran concierto de Navidad en el auditorio. El año pasado, el concierto fue un éxito rotundo. Asistieron más de doscientas cincuenta familias y los alumnos interpretaron obras de Mozart, Falla y Paco de Lucía. Actualmente, el instituto está desarrollando un programa oficial de flamenco para celebrar la rica tradición musical de Sevilla." data-en="The school has a forty-piece school orchestra, a sixty-voice choir, and a very popular jazz ensemble. Every December, the students organise a grand Christmas concert in the auditorium. Last year, the concert was a resounding success. More than two hundred and fifty families attended and the students performed works by Mozart, Falla, and Paco de Lucía. Currently, the institute is developing an official flamenco programme to celebrate the rich musical tradition of Seville.">El colegio tiene una orquesta escolar de cuarenta músicos, un coro de sesenta voces y un conjunto de jazz muy popular. Cada mes de diciembre, los estudiantes organizan un gran concierto de Navidad en el auditorio. El año pasado, el concierto fue un éxito rotundo. Asistieron más de doscientas cincuenta familias y los alumnos interpretaron obras de Mozart, Falla y Paco de Lucía. Actualmente, el instituto está desarrollando un programa oficial de flamenco para celebrar la rica tradición musical de Sevilla.</p>
+  </div>
+</div>
+<div class="page-nav-footer"><div class="next-label" data-es="Página siguiente" data-en="Next page">Página siguiente</div><a class="page-nav-btn" onclick="showPage('gallery')" data-es="Galería Fotográfica" data-en="Photo Gallery">Galería Fotográfica <span class="arrow">→</span></a></div>
+</div>
+
+<!-- ==================== GALLERY (Mosaic) ==================== -->
+<div class="page" id="page-gallery">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Imágenes del Campus" data-en="Campus Images">Imágenes del Campus</p><h1 data-es="Galería Fotográfica" data-en="Photo Gallery">Galería Fotográfica</h1><p data-es="Aquí puede ver los espacios y los momentos más importantes del Instituto Cervantes del Sur." data-en="Here you can see the most important spaces and moments of the Instituto Cervantes del Sur.">Aquí puede ver los espacios y los momentos más importantes del Instituto Cervantes del Sur.</p></div>
+
+<div class="mosaic-section"><div class="content-wrap-wide">
+  <div class="mosaic-grid">
+    <div class="mosaic-item reveal-scale stagger-1"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><rect x="4" y="12" width="20" height="14" rx="1" fill="#D4B36A"/><polygon points="14,3 2,12 26,12" fill="#B8963E"/><rect x="8" y="16" width="4" height="4" rx="0.5" fill="#F5F0E8" opacity="0.4"/><rect x="16" y="16" width="4" height="4" rx="0.5" fill="#F5F0E8" opacity="0.4"/></svg></div><div class="m-cap">Fachada Principal</div><div class="m-sub">Piedra dorada andaluza, siglo XIX</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-2"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><circle cx="14" cy="10" r="9" fill="#5A8A45" opacity="0.7"/><circle cx="10" cy="12" r="6" fill="#4A7A4A" opacity="0.6"/><circle cx="18" cy="11" r="7" fill="#3D6B3D" opacity="0.6"/><rect x="12" y="18" width="4" height="8" rx="1" fill="#96792F"/></svg></div><div class="m-cap">Patio de los Naranjos</div><div class="m-sub">Corazón del campus</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-3"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><rect x="4" y="6" width="5" height="18" rx="1" fill="#D4B36A"/><rect x="10" y="4" width="5" height="20" rx="1" fill="#B8963E"/><rect x="16" y="7" width="5" height="17" rx="1" fill="#96792F"/><rect x="22" y="5" width="4" height="19" rx="1" fill="#D4B36A" opacity="0.7"/></svg></div><div class="m-cap">La Gran Biblioteca</div><div class="m-sub">25.000 volúmenes</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-4"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><rect x="11" y="2" width="6" height="10" rx="1" fill="#B8963E"/><path d="M8 26 L11 12 L17 12 L20 26 Z" fill="#D4B36A"/><circle cx="14" cy="20" r="3" fill="#F5F0E8" opacity="0.3"/></svg></div><div class="m-cap">Laboratorio de Ciencias</div><div class="m-sub">Equipamiento profesional</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-5"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><ellipse cx="9" cy="22" rx="5" ry="3.5" fill="#D4B36A"/><rect x="13" y="6" width="2" height="16" fill="#B8963E"/><rect x="13" y="4" width="10" height="4" rx="1" fill="#D4B36A"/></svg></div><div class="m-cap">Concierto de Navidad</div><div class="m-sub">Auditorio, diciembre 2025</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-1"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="#D4B36A" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="none" stroke="#B8963E" stroke-width="1"/></svg></div><div class="m-cap">Campos Deportivos</div><div class="m-sub">Fútbol, tenis, atletismo</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-2"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><circle cx="14" cy="15" r="10" fill="none" stroke="#D4B36A" stroke-width="1.5"/><circle cx="14" cy="15" r="7" fill="none" stroke="#B8963E" stroke-width="0.8"/></svg></div><div class="m-cap">El Comedor</div><div class="m-sub">Cocina fresca y local</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-3"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><path d="M8 4 L20 4 L18 14 L10 14 Z" fill="#D4B36A"/><rect x="12" y="14" width="4" height="5" fill="#B8963E"/><rect x="9" y="19" width="10" height="3" rx="1" fill="#96792F"/><path d="M8 4 Q3 6 4 10 L8 10" fill="#D4B36A" opacity="0.5"/><path d="M20 4 Q25 6 24 10 L20 10" fill="#D4B36A" opacity="0.5"/></svg></div><div class="m-cap">Ceremonia de Premios</div><div class="m-sub">Excelencia académica</div></div></div>
+    <div class="mosaic-item reveal-scale stagger-4"><div class="m-inner"><div class="m-icon"><svg width="32" height="32" viewBox="0 0 28 28"><circle cx="10" cy="12" r="8" fill="none" stroke="#D4B36A" stroke-width="1.5"/><circle cx="7" cy="10" r="1.5" fill="#D4B36A"/><circle cx="13" cy="10" r="1.5" fill="#D4B36A"/><path d="M7 15 Q10 18 13 15" stroke="#D4B36A" stroke-width="1" fill="none"/><circle cx="19" cy="14" r="8" fill="none" stroke="#B8963E" stroke-width="1.5"/><circle cx="16" cy="12" r="1.5" fill="#B8963E"/><circle cx="22" cy="12" r="1.5" fill="#B8963E"/><path d="M16 17 Q19 15 22 17" stroke="#B8963E" stroke-width="1" fill="none"/></svg></div><div class="m-cap">Club de Teatro</div><div class="m-sub">Fin de curso</div></div></div>
+  </div>
+</div></div>
+<div class="page-nav-footer"><div class="next-label" data-es="Página siguiente" data-en="Next page">Página siguiente</div><a class="page-nav-btn" onclick="showPage('testimonials')" data-es="Testimonios" data-en="Testimonials">Testimonios <span class="arrow">→</span></a></div>
+</div>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<div class="page" id="page-testimonials">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Voces de Nuestra Comunidad" data-en="Voices from Our Community">Voces de Nuestra Comunidad</p><h1 data-es="Testimonios" data-en="Testimonials">Testimonios</h1><p data-es="Alumnos, padres y exalumnos comparten sus experiencias en el Instituto Cervantes del Sur." data-en="Students, parents, and alumni share their experiences at the Instituto Cervantes del Sur.">Alumnos, padres y exalumnos comparten sus experiencias en el Instituto Cervantes del Sur.</p></div>
+
+<div class="testimonial-strip"><div class="t-carousel">
+  <div class="t-card reveal stagger-1"><div class="t-text" data-es="Estudiar en el Instituto Cervantes del Sur es la mejor experiencia de mi vida académica. Los profesores no solo enseñan, te inspiran a dar lo mejor de ti mismo cada día. Gracias a este colegio, descubrí mi pasión por la ciencia." data-en="Studying at the Instituto Cervantes del Sur is the best experience of my academic life. The teachers don't just teach, they inspire you to give your best every day. Thanks to this school, I discovered my passion for science.">Estudiar en el Instituto Cervantes del Sur es la mejor experiencia de mi vida académica. Los profesores no solo enseñan, te inspiran a dar lo mejor de ti mismo cada día. Gracias a este colegio, descubrí mi pasión por la ciencia.</div><div class="t-author">María Fernández López</div><div class="t-role" data-es="Alumna de cuarto curso" data-en="Fourth-year student">Alumna de cuarto curso</div></div>
+  <div class="t-card reveal stagger-2"><div class="t-text" data-es="Como padre, valoro mucho la atención que recibe mi hijo aquí. Los profesores son muy buenos y el ambiente del colegio es muy especial. Hay disciplina, pero también hay mucho cariño." data-en="As a parent, I really value the attention my son receives here. The teachers are very good and the school environment is very special. There is discipline, but also a lot of warmth.">Como padre, valoro mucho la atención que recibe mi hijo aquí. Los profesores son muy buenos y el ambiente del colegio es muy especial. Hay disciplina, pero también hay mucho cariño.</div><div class="t-author">Carlos Gutiérrez Peña</div><div class="t-role" data-es="Padre de alumno" data-en="Parent">Padre de alumno</div></div>
+  <div class="t-card reveal stagger-3"><div class="t-text" data-es="Me gradué del instituto hace diez años y hoy soy médica en el Hospital Virgen del Rocío de Sevilla. La formación rigurosa que recibí en este colegio fue la base sólida sobre la cual construí toda mi carrera." data-en="I graduated from the institute ten years ago and today I am a doctor at the Virgen del Rocío Hospital in Seville. The rigorous education I received at this school was the solid foundation upon which I built my entire career.">Me gradué del instituto hace diez años y hoy soy médica en el Hospital Virgen del Rocío de Sevilla. La formación rigurosa que recibí en este colegio fue la base sólida sobre la cual construí toda mi carrera.</div><div class="t-author">Dra. Alejandra Molina Ríos</div><div class="t-role" data-es="Exalumna, promoción de 2016" data-en="Alumna, class of 2016">Exalumna, promoción de 2016</div></div>
+  <div class="t-card reveal stagger-4"><div class="t-text" data-es="Lo que más me gusta del instituto es que hay actividades para todos. Yo participo en el club de debate, en la orquesta escolar y en el equipo de natación. Siempre hay algo interesante que hacer después de las clases." data-en="What I like most about the institute is that there are activities for everyone. I participate in the debate club, the school orchestra, and the swimming team. There is always something interesting to do after classes.">Lo que más me gusta del instituto es que hay actividades para todos. Yo participo en el club de debate, en la orquesta escolar y en el equipo de natación. Siempre hay algo interesante que hacer después de las clases.</div><div class="t-author">Pablo Sánchez Herrero</div><div class="t-role" data-es="Alumno de tercer curso" data-en="Third-year student">Alumno de tercer curso</div></div>
+  <div class="t-card reveal stagger-5"><div class="t-text" data-es="La biblioteca del instituto es mi lugar favorito en el mundo. Tiene miles de libros, zonas tranquilas para estudiar y profesores que siempre están disponibles para ayudar. Es el corazón intelectual del colegio." data-en="The institute's library is my favourite place in the world. It has thousands of books, quiet study areas, and professors who are always available to help. It is the intellectual heart of the school.">La biblioteca del instituto es mi lugar favorito en el mundo. Tiene miles de libros, zonas tranquilas para estudiar y profesores que siempre están disponibles para ayudar. Es el corazón intelectual del colegio.</div><div class="t-author">Lucía Romero Díaz</div><div class="t-role" data-es="Alumna de bachillerato" data-en="Baccalaureate student">Alumna de bachillerato</div></div>
+  <div class="t-card reveal stagger-1"><div class="t-text" data-es="Llevo veinte años enseñando en este instituto. Los alumnos llegan cada mañana con curiosidad, energía y ganas de aprender. Es un privilegio enorme ser parte de esta comunidad educativa." data-en="I have been teaching at this institute for twenty years. Students arrive every morning with curiosity, energy, and a desire to learn. It is an enormous privilege to be part of this educational community.">Llevo veinte años enseñando en este instituto. Los alumnos llegan cada mañana con curiosidad, energía y ganas de aprender. Es un privilegio enorme ser parte de esta comunidad educativa.</div><div class="t-author">Prof. Andrés Prieto Torres</div><div class="t-role" data-es="Profesor de Lengua Castellana y Literatura" data-en="Professor of Spanish Language and Literature">Profesor de Lengua Castellana y Literatura</div></div>
+</div></div>
+<div class="page-nav-footer"><div class="next-label" data-es="Última página" data-en="Last page">Última página</div><a class="page-nav-btn" onclick="showPage('admissions')" data-es="Proceso de Admisión" data-en="Admissions Process">Proceso de Admisión <span class="arrow">→</span></a></div>
+</div>
+
+<!-- ==================== ADMISSIONS ==================== -->
+<div class="page" id="page-admissions">
+<div class="page-hero"><div class="parallax-bg"></div><p class="page-hero-label" data-es="Proceso de Admisión" data-en="Admissions Process">Proceso de Admisión</p><h1 data-es="Únase a Nuestra Comunidad" data-en="Join Our Community">Únase a Nuestra Comunidad</h1><p data-es="El Instituto Cervantes del Sur abre sus puertas a familias que quieren lo mejor para sus hijos. Si usted busca un colegio con tradición, calidad y un ambiente excelente, este es el lugar." data-en="The Instituto Cervantes del Sur opens its doors to families who want the best for their children. If you are looking for a school with tradition, quality, and an excellent environment, this is the place.">El Instituto Cervantes del Sur abre sus puertas a familias que quieren lo mejor para sus hijos. Si usted busca un colegio con tradición, calidad y un ambiente excelente, este es el lugar.</p></div>
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="Requisitos" data-en="Requirements">Requisitos</p>
+  <h2 class="section-heading" data-es="¿Qué buscamos en nuestros futuros alumnos?" data-en="What do we look for in our future students?">¿Qué buscamos en nuestros futuros alumnos?</h2>
+  <div class="gold-rule"></div>
+  <div class="prose">
+    <p data-es="El proceso de admisión del instituto es selectivo pero justo. Buscamos estudiantes que tengan buena capacidad académica, curiosidad intelectual y ganas de ser parte de nuestra comunidad escolar." data-en="The institute's admissions process is selective but fair. We are looking for students who have good academic ability, intellectual curiosity, and a desire to be part of our school community.">El proceso de admisión del instituto es selectivo pero justo. Buscamos estudiantes que tengan buena capacidad académica, curiosidad intelectual y ganas de ser parte de nuestra comunidad escolar.</p>
+    <p data-es="Los candidatos deben presentar su expediente académico de los dos últimos años, una carta de motivación escrita por el alumno y dos cartas de recomendación de profesores anteriores. También realizan una prueba de nivel en Matemáticas y Lengua Castellana, y después tienen una entrevista personal con un miembro del equipo directivo. Es un proceso completo, pero vale la pena." data-en="Candidates must submit their academic transcript from the last two years, a motivation letter written by the student, and two recommendation letters from previous teachers. They also take a placement test in Mathematics and Spanish Language, and afterwards have a personal interview with a member of the management team. It is a thorough process, but it is worth it.">Los candidatos deben presentar su expediente académico de los dos últimos años, una carta de motivación escrita por el alumno y dos cartas de recomendación de profesores anteriores. También realizan una prueba de nivel en Matemáticas y Lengua Castellana, y después tienen una entrevista personal con un miembro del equipo directivo. Es un proceso completo, pero vale la pena.</p>
+  </div>
+</div>
+
+<hr class="soft-divider">
+
+<div class="content-wrap reveal">
+  <p class="section-sub" data-es="Pasos del Proceso" data-en="Process Steps">Pasos del Proceso</p>
+  <h2 class="section-heading" data-es="El camino hacia el Instituto Cervantes del Sur" data-en="The path to the Instituto Cervantes del Sur">El camino hacia el Instituto Cervantes del Sur</h2>
+  <div class="admissions-steps">
+    <div class="step-card reveal stagger-1"><div class="step-num">1</div><h3 data-es="Solicitud" data-en="Application">Solicitud</h3><p data-es="Las familias completan el formulario de solicitud en línea o en la secretaría del colegio entre enero y marzo." data-en="Families complete the application form online or at the school office between January and March.">Las familias completan el formulario de solicitud en línea o en la secretaría del colegio entre enero y marzo.</p></div>
+    <div class="step-card reveal stagger-2"><div class="step-num">2</div><h3 data-es="Documentación" data-en="Documentation">Documentación</h3><p data-es="Los candidatos envían el expediente académico, la carta de motivación y las dos cartas de recomendación antes del treinta y uno de marzo." data-en="Candidates submit their academic transcript, motivation letter, and two recommendation letters before March thirty-first.">Los candidatos envían el expediente académico, la carta de motivación y las dos cartas de recomendación antes del treinta y uno de marzo.</p></div>
+    <div class="step-card reveal stagger-3"><div class="step-num">3</div><h3 data-es="Prueba de Nivel" data-en="Placement Test">Prueba de Nivel</h3><p data-es="Los candidatos realizan un examen de Matemáticas y Lengua Castellana durante la primera semana de abril." data-en="Candidates take a Mathematics and Spanish Language exam during the first week of April.">Los candidatos realizan un examen de Matemáticas y Lengua Castellana durante la primera semana de abril.</p></div>
+    <div class="step-card reveal stagger-4"><div class="step-num">4</div><h3 data-es="Entrevista" data-en="Interview">Entrevista</h3><p data-es="Una entrevista personal con la Directora o la Subdirectora Académica. El objetivo es conocer al alumno como persona, no solo como estudiante." data-en="A personal interview with the Director or the Academic Deputy Head. The goal is to know the student as a person, not just as a student.">Una entrevista personal con la Directora o la Subdirectora Académica. El objetivo es conocer al alumno como persona, no solo como estudiante.</p></div>
+    <div class="step-card reveal stagger-5"><div class="step-num">5</div><h3 data-es="Decisión" data-en="Decision">Decisión</h3><p data-es="Las familias reciben la decisión final por correo electrónico antes del treinta de abril. Los alumnos admitidos confirman su plaza antes del quince de mayo." data-en="Families receive the final decision by email before April thirtieth. Admitted students confirm their place before May fifteenth.">Las familias reciben la decisión final por correo electrónico antes del treinta de abril. Los alumnos admitidos confirman su plaza antes del quince de mayo.</p></div>
+  </div>
+</div>
+
+<hr class="soft-divider">
+
+<div class="content-wrap reveal" style="text-align:center;padding-bottom:4rem">
+  <h2 class="section-heading" data-es="¿Tiene preguntas?" data-en="Have questions?">¿Tiene preguntas?</h2>
+  <p class="prose" style="margin:0 auto 1.5rem;text-align:center" data-es="La oficina de admisiones está disponible para atender todas sus consultas y para organizar una visita personalizada a nuestro campus." data-en="The admissions office is available to answer all your queries and to arrange a personalised visit to our campus.">La oficina de admisiones está disponible para atender todas sus consultas y para organizar una visita personalizada a nuestro campus.</p>
+  <p style="font-size:1.1rem;color:var(--forest);font-weight:600;margin-bottom:0.3rem">admisiones@institutocervantesdelsur.es</p>
+  <p style="font-size:1rem;color:var(--stone);margin-bottom:2rem">+34 954 123 456 · Extensión 2</p>
+  <a class="btn-outline" onclick="showPage('home')">← Volver al Inicio</a>
+</div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+<div class="footer-inner">
+  <div><div class="footer-brand">Instituto Cervantes del Sur</div><p class="footer-desc">Calle de la Sabiduría, 12 · 41004 Sevilla, Andalucía, España<br>Tel: +34 954 123 456 · info@institutocervantesdelsur.es</p></div>
+  <div class="footer-col"><h4 data-es="Explorar" data-en="Explore">Explorar</h4><a onclick="showPage('academics')" data-es="Plan de Estudios" data-en="Curriculum">Plan de Estudios</a><a onclick="showPage('faculty')" data-es="Profesorado" data-en="Faculty">Profesorado</a><a onclick="showPage('campus')">Campus</a><a onclick="showPage('life')" data-es="Vida Escolar" data-en="School Life">Vida Escolar</a></div>
+  <div class="footer-col"><h4 data-es="Comunidad" data-en="Community">Comunidad</h4><a onclick="showPage('gallery')" data-es="Galería" data-en="Gallery">Galería</a><a onclick="showPage('testimonials')" data-es="Testimonios" data-en="Testimonials">Testimonios</a><a onclick="showPage('admissions')" data-es="Admisiones" data-en="Admissions">Admisiones</a></div>
+</div>
+<div class="footer-bottom">© 2026 Instituto Cervantes del Sur · Sabiduría, Tradición, Excelencia</div>
+<div class="footer-credit">Diseñado y desarrollado por Nidel Carter · HTML/CSS/JS</div>
+</footer>
+
+<!-- my scripts - nidel -->
+<script>
+// switching between pages when you click the nav links
+// took me ages to figure out how to do this without separate html files lol
+function goToPage(id){
+  var allPages = document.querySelectorAll('.page');
+  for(var i = 0; i < allPages.length; i++){
+    allPages[i].classList.remove('active');
+  }
+  var targetPage = document.getElementById('page-' + id);
+  if(targetPage){
+    targetPage.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  // update which nav link looks active
+  var navLinks = document.querySelectorAll('.nav-links a');
+  for(var j = 0; j < navLinks.length; j++){
+    if(navLinks[j].dataset.page === id){
+      navLinks[j].classList.add('active');
+    } else {
+      navLinks[j].classList.remove('active');
+    }
+  }
+  // close the mobile menu if its open
+  document.getElementById('navLinks').classList.remove('open');
+  // need a small delay before checking for scroll animations on the new page
+  setTimeout(function(){ setupScrollAnimations(); setupCounterAnimations(); }, 150);
+}
+
+// keeping the old name too so onclick="showPage()" still works everywhere
+// didnt want to go back and change every single button lol
+var showPage = goToPage;
+
+function toggleMobileNav(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ---- scroll animations ----
+// this makes things fade in when you scroll down to them
+// learned this from a youtube tutorial about intersection observer
+function setupScrollAnimations(){
+  var animatedElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  var scrollWatcher = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.06});
+  
+  for(var i = 0; i < animatedElements.length; i++){
+    scrollWatcher.observe(animatedElements[i]);
+  }
+}
+
+// make the navbar darker when you scroll down
+window.addEventListener('scroll', function(){
+  var nav = document.getElementById('siteNav');
+  if(window.scrollY > 30){
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// ---- parallax effect ----
+// this makes the background elements move slower than the foreground
+// gives it that depth feeling
+window.addEventListener('scroll', function(){
+  var scrollPos = window.scrollY;
+  
+  // hero decorative circles
+  var heroLayers = document.querySelectorAll('.parallax-layer');
+  heroLayers.forEach(function(layer){
+    var speed = parseFloat(layer.dataset.speed) || 0.03;
+    layer.style.transform = 'translateY(' + scrollPos * speed + 'px)';
+  });
+  
+  // page hero backgrounds
+  var pageBgs = document.querySelectorAll('.parallax-bg');
+  pageBgs.forEach(function(bg){
+    var rect = bg.parentElement.getBoundingClientRect();
+    var offset = rect.top * 0.15;
+    bg.style.transform = 'translateY(' + offset + 'px)';
+  });
+});
+
+// ---- number counter animation ----
+// makes the stats count up from 0 when you scroll to them
+// this was honestly the hardest part to get working
+var alreadyCounted = new Set(); // track which ones already animated so they dont repeat
+
+function setupCounterAnimations(){
+  var counterWatcher = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !alreadyCounted.has(entry.target)){
+        alreadyCounted.add(entry.target);
+        doCountAnimation(entry.target);
+      }
+    });
+  }, {threshold: 0.3});
+  
+  var counters = document.querySelectorAll('.counter');
+  counters.forEach(function(c){ counterWatcher.observe(c); });
+}
+
+function doCountAnimation(element){
+  var targetNum = parseInt(element.dataset.target);
+  var animDuration = 1800; // milliseconds
+  var startTime = performance.now();
+  var isYearNumber = targetNum > 1000; // years shouldnt have commas
+  
+  function tick(currentTime){
+    var elapsed = currentTime - startTime;
+    var progress = Math.min(elapsed / animDuration, 1);
+    // easing function - makes it slow down at the end (looks nicer)
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var currentNum = Math.round(eased * targetNum);
+    element.textContent = isYearNumber ? currentNum : currentNum.toLocaleString();
+    if(progress < 1){
+      requestAnimationFrame(tick);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+// ---- language switcher (español / english) ----
+// this was actually really cool to build
+// every element with data-es and data-en attributes gets swapped
+var siteLang = 'es';
+
+function toggleLang(){
+  siteLang = (siteLang === 'es') ? 'en' : 'es';
+  document.getElementById('langToggle').textContent = (siteLang === 'es') ? 'EN' : 'ES';
+  
+  // go through every element that has translation data
+  var translatableElements = document.querySelectorAll('[data-' + siteLang + ']');
+  translatableElements.forEach(function(el){
+    var newText = el.getAttribute('data-' + siteLang);
+    if(newText){
+      if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA'){
+        el.value = newText;
+      } else {
+        // have to be careful not to delete arrow icons inside buttons
+        var arrowSpan = el.querySelector('.arrow, .hint-arrow');
+        el.textContent = newText;
+        if(arrowSpan){
+          el.appendChild(document.createTextNode(' '));
+          el.appendChild(arrowSpan);
+        }
+      }
+    }
+  });
+}
+
+// ---- campus map - click to see details ----
+// all the info for each building on the interactive map
+var campusInfo = {
+  edificio:{
+    title:{es:'El Edificio Principal',en:'The Main Building'},
+    text:{es:'Fue construido en 1845 con piedra dorada de las canteras sevillanas. El edificio tiene treinta y dos aulas, las oficinas administrativas y la residencia histórica del director. Su fachada neoclásica con balcones de hierro forjado es una de las más bellas del barrio de Santa Cruz. En su interior, los pasillos conservan los suelos originales de mármol y las paredes están decoradas con retratos de directores y alumnos distinguidos.',en:'It was built in 1845 with golden stone from the Sevillian quarries. The building contains thirty-two classrooms, the administrative offices, and the director\'s historic residence. Its neoclassical facade with wrought-iron balconies is one of the most beautiful in the Santa Cruz quarter. Inside, the corridors preserve the original marble floors and the walls are decorated with portraits of distinguished directors and students.'}
+  },
+  patio:{
+    title:{es:'El Patio Central: Patio de los Naranjos',en:'The Central Courtyard: Orange Tree Courtyard'},
+    text:{es:'El corazón del campus es un hermoso patio abierto de estilo andaluz. Está rodeado de arcos de medio punto y columnas de piedra. En el centro, una fuente octogonal de mármol refleja la luz del sol sevillano. A su alrededor crecen naranjos centenarios que perfuman el aire durante la primavera. Este espacio es el punto de encuentro de los alumnos durante los recreos y es también el escenario de las ceremonias más importantes del colegio.',en:'The heart of the campus is a beautiful open Andalusian-style courtyard. It is surrounded by semicircular arches and stone columns. In the centre, an octagonal marble fountain reflects the Sevillian sunlight. Around it grow centuries-old orange trees that perfume the air during spring. This space is the students\' meeting point during breaks and is also the stage for the school\'s most important ceremonies.'}
+  },
+  biblioteca:{
+    title:{es:'La Gran Biblioteca',en:'The Grand Library'},
+    text:{es:'La biblioteca ocupa un edificio anexo de dos plantas con techos de madera de castaño tallada a mano. La planta baja tiene las colecciones de literatura, historia, ciencias y referencia general, junto con zonas de lectura silenciosa amuebladas con sillones de cuero y lámparas de latón. La planta superior tiene seis salas de estudio en grupo, una sección digital con tabletas y acceso a bases de datos académicas internacionales.',en:'The library occupies an annex building of two floors with hand-carved chestnut wood ceilings. The ground floor houses the literature, history, science, and general reference collections, along with silent reading areas furnished with leather armchairs and brass lamps. The upper floor has six group study rooms, a digital section with tablets, and access to international academic databases.'}
+  },
+  labs:{
+    title:{es:'Los Laboratorios de Ciencias',en:'The Science Laboratories'},
+    text:{es:'El ala científica del instituto tiene tres laboratorios especializados: Física, Química y Biología. Cada uno está equipado con microscopios electrónicos, campanas de extracción, balanzas analíticas de precisión y kits de experimentación avanzados. Los laboratorios fueron completamente renovados en 2022 con una inversión de más de trescientos mil euros.',en:'The scientific wing of the institute has three specialised laboratories: Physics, Chemistry, and Biology. Each is equipped with electron microscopes, extraction hoods, precision analytical balances, and advanced experimentation kits. The laboratories were completely renovated in 2022 with an investment of more than three hundred thousand euros.'}
+  },
+  comedor:{
+    title:{es:'El Comedor',en:'The Dining Hall'},
+    text:{es:'Está situado en un edificio luminoso con grandes ventanales que dan al jardín interior. El comedor tiene capacidad para doscientos cincuenta comensales al mismo tiempo. El equipo de cuatro cocineros profesionales prepara menús diarios con productos frescos adquiridos en los mercados locales de Sevilla. El menú siempre incluye opciones vegetarianas, veganas y sin gluten.',en:'It is located in a bright building with large windows overlooking the inner garden. The dining hall seats two hundred and fifty at a time. The team of four professional chefs prepares daily menus with fresh produce purchased from local Sevillian markets. The menu always includes vegetarian, vegan, and gluten-free options.'}
+  },
+  musica:{
+    title:{es:'La Sala de Música y el Estudio de Grabación',en:'The Music Room and Recording Studio'},
+    text:{es:'La sala de música es un espacio completamente insonorizado que tiene un piano de cola Steinway & Sons, doce guitarras clásicas y seis eléctricas, cuatro violines, dos violonchelos, flautas, clarinetes, saxofones, baterías, trompetas y cajones flamencos. También hay un pequeño estudio de grabación profesional donde los alumnos están grabando y produciendo sus propias composiciones musicales.',en:'The music room is a fully soundproofed space containing a Steinway & Sons grand piano, twelve classical and six electric guitars, four violins, two cellos, flutes, clarinets, saxophones, drums, trumpets, and flamenco cajóns. There is also a small professional recording studio where students are recording and producing their own musical compositions.'}
+  },
+  deportes:{
+    title:{es:'Las Instalaciones Deportivas',en:'The Sports Facilities'},
+    text:{es:'El complejo deportivo incluye un campo de fútbol de césped natural con iluminación nocturna, dos canchas de baloncesto al aire libre, una cancha cubierta de voleibol, cuatro pistas de tenis de tierra batida, una pista de atletismo de cuatrocientos metros, una piscina climatizada de veinticinco metros, un gimnasio cubierto con equipamiento completo y una sala de artes marciales. Todas las instalaciones fueron renovadas hace dos años.',en:'The sports complex includes a natural grass football pitch with night lighting, two outdoor basketball courts, an indoor volleyball court, four clay tennis courts, a four-hundred-metre athletics track, a heated twenty-five-metre pool, a fully equipped indoor gymnasium, and a martial arts room. All facilities were renovated two years ago.'}
+  },
+  informatica:{
+    title:{es:'La Sala de Informática',en:'The Computer Room'},
+    text:{es:'La sala tiene cuarenta ordenadores de última generación con pantallas de alta resolución, dos impresoras 3D, kits de robótica Arduino y Raspberry Pi, y software profesional de diseño gráfico y programación. Los alumnos están aprendiendo lenguajes como Python y Java, diseño web, modelado en tres dimensiones y los fundamentos de la inteligencia artificial.',en:'The room has forty state-of-the-art computers with high-resolution screens, two 3D printers, Arduino and Raspberry Pi robotics kits, and professional graphic design and programming software. Students are learning languages like Python and Java, web design, 3D modelling, and the fundamentals of artificial intelligence.'}
+  }
+};
+
+function showCampusDetail(key){
+  var detailPanel = document.getElementById('campusDetail');
+  var info = campusInfo[key];
+  if(info){
+    detailPanel.innerHTML = '<h3>' + info.title[siteLang] + '</h3><p>' + info.text[siteLang] + '</p>';
+    // quick gold flash effect so they notice the text changed
+    detailPanel.style.borderColor = 'var(--gold)';
+    detailPanel.style.boxShadow = '0 0 0 1px var(--gold)';
+    setTimeout(function(){
+      detailPanel.style.borderColor = 'var(--cream-dark)';
+      detailPanel.style.boxShadow = 'none';
+    }, 2500);
+  }
+}
+
+// ---- start everything when page loads ----
+document.addEventListener('DOMContentLoaded', function(){
+  // hide the splash screen after a few seconds
+  setTimeout(function(){
+    document.getElementById('splash').classList.add('hidden');
+  }, 2800);
+  // then start the animations
+  setTimeout(function(){
+    setupScrollAnimations();
+    setupCounterAnimations();
+  }, 3000);
+});
+</script>
+</body>
+</html>
